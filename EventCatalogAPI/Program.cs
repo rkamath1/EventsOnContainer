@@ -16,14 +16,14 @@ namespace EventCatalogAPI
     {
         public static void Main(string[] args)
         {
-           var host =  CreateWebHostBuilder(args).Build();//build the host
+            var host = CreateWebHostBuilder(args).Build();//build the host
             using(var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider; //Find all services (Startup,cs)
                 var context = services.GetRequiredService<EventCatalogContext>();//Check if catalogcontext service is running
                 EventCatalogSeed.Seed(context);//If yes, then seed the database
             }
-            host.Run();//run the host
+            host.Run();//run the host 
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

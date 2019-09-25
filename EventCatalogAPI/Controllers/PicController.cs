@@ -30,4 +30,4 @@ namespace EventCatalogAPI.Controllers
             return File(buffer, "image/jpeg");
         }
     }
-}
+}  

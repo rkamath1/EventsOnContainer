@@ -27,8 +27,7 @@ namespace EventCatalogAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddDbContext<EventCatalogContext>(options =>
-                options.UseSqlServer(Configuration["ConnectionString"]));//connection string from appsettings.json
+            services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));//connection string from appsettings.json
             //is injected to EventCatalogContext dependancy injection receiver
             services.AddSwaggerGen(options =>
             {
@@ -40,7 +39,7 @@ namespace EventCatalogAPI
                     Description = "The event catalog API for an EventBrite like site",
                     TermsOfService = "TermsOfService"
                 });
-            });
+            }); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,13 +50,13 @@ namespace EventCatalogAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger()
+           app.UseSwagger()
                 .UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint($"/swagger/v1/swagger.json", "EventCatalogAPI V1");
-                });
+                });  
 
-            app.UseMvc();
+            app.UseMvc(); 
         }
     }
 }
