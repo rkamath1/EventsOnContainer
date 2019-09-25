@@ -3,14 +3,16 @@ using EventCatalogAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EventCatalogAPI.Migrations
 {
     [DbContext(typeof(EventCatalogContext))]
-    partial class EventCatalogContextModelSnapshot : ModelSnapshot
+    [Migration("20190924000859_second")]
+    partial class second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,20 +50,16 @@ namespace EventCatalogAPI.Migrations
                     b.Property<string>("Date")
                         .IsRequired();
 
-                    b.Property<int>("EventCategoryId");
-
-                    b.Property<string>("EventDescription")
+                    b.Property<string>("Description")
                         .HasMaxLength(100);
+
+                    b.Property<int>("EventCategoryId");
 
                     b.Property<int>("EventLocationId");
 
-                    b.Property<string>("EventName")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
                     b.Property<int>("EventTypeId");
 
-                    b.Property<string>("OrganizerName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100);
 
@@ -72,10 +70,6 @@ namespace EventCatalogAPI.Migrations
                     b.Property<string>("Time")
                         .IsRequired();
 
-                    b.Property<string>("VenueName")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
                     b.HasKey("Id");
 
                     b.HasIndex("EventCategoryId");
@@ -84,7 +78,7 @@ namespace EventCatalogAPI.Migrations
 
                     b.HasIndex("EventTypeId");
 
-                    b.ToTable("EventCatalog");
+                    b.ToTable("Catalog");
                 });
 
             modelBuilder.Entity("EventCatalogAPI.Domain.EventLocation", b =>
@@ -94,17 +88,13 @@ namespace EventCatalogAPI.Migrations
                         .HasAnnotation("SqlServer:HiLoSequenceName", "event_location_hilo")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<string>("State")
+                    b.Property<string>("Location")
                         .IsRequired()
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
 
-                    b.ToTable("EventLocations");
+                    b.ToTable("CatalogLocations");
                 });
 
             modelBuilder.Entity("EventCatalogAPI.Domain.EventType", b =>
