@@ -37,7 +37,8 @@ namespace EventCatalogAPI
                 {
                     Title = "EventsOnContainer - Event catalog Http API",
                     Version = "v1",
-                    Description = "The event catalog API for an EventBrite like site",
+                    Description = "The event catalog API for an" +
+                    " EventBrite like site",
                     TermsOfService = "TermsOfService"
                 });
             });
