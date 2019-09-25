@@ -50,13 +50,13 @@ namespace EventCatalogAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger()
+           app.UseSwagger()
                 .UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint($"/swagger/v1/swagger.json", "EventCatalogAPI V1");
                 });  
 
-            app.UseMvc();
+            app.UseMvc(); 
         }
     }
 }

@@ -28,7 +28,7 @@ namespace EventCatalogAPI.Controllers
         public async Task<IActionResult> Items([FromQuery] int pageIndex = 0, [FromQuery] int pageSize = 6)
         {
             var itemsCount = await _context.EventItems.LongCountAsync();
-            var items = await _context.EventItems.OrderBy(c => c.Name).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
+            var items = await _context.EventItems.OrderBy(c => c.EventName).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
 
             items = changePictureUrl(items);
 
@@ -54,7 +54,7 @@ namespace EventCatalogAPI.Controllers
             }
 
             var itemsCount = await root.LongCountAsync();
-            var items = await root.OrderBy(c => c.Name).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
+            var items = await root.OrderBy(c => c.EventName).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
 
             items = changePictureUrl(items);
 
@@ -91,4 +91,4 @@ namespace EventCatalogAPI.Controllers
             return Ok(items);
         }
     }
-}
+} 

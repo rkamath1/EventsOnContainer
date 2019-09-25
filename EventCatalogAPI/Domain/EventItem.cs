@@ -8,8 +8,10 @@ namespace EventCatalogAPI.Domain
     public class EventItem
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string EventName { get; set; }
+        public string OrganizerName { get; set; }
+        public string EventDescription { get; set; }
+        public string VenueName { get; set; }
         public string Date { get; set; }
         public string PictureUrl { get; set; }
         public decimal TicketPrice { get; set; }

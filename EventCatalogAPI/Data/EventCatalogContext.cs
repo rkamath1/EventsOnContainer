@@ -32,16 +32,19 @@ namespace EventCatalogAPI.Data
         {
             builder.ToTable("EventLocations");
             builder.Property(l => l.Id).IsRequired().ForSqlServerUseSequenceHiLo("event_location_hilo");
-            builder.Property(l => l.Location).IsRequired().HasMaxLength(100);
+            builder.Property(l => l.City).IsRequired().HasMaxLength(100);
+            builder.Property(l => l.State).IsRequired().HasMaxLength(100);
         }
 
         private void ConfigureEventItem(EntityTypeBuilder<EventItem> builder)
         {
             builder.ToTable("EventCatalog");
             builder.Property(c => c.Id).IsRequired().ForSqlServerUseSequenceHiLo("event_hilo");
-            builder.Property(c => c.Name).IsRequired().HasMaxLength(100);
+            builder.Property(c => c.EventName).IsRequired().HasMaxLength(100);
+            builder.Property(c => c.OrganizerName).IsRequired().HasMaxLength(100);
+            builder.Property(c => c.VenueName).IsRequired().HasMaxLength(100);
             builder.Property(c => c.TicketPrice).IsRequired();
-            builder.Property(c => c.Description).HasMaxLength(100);
+            builder.Property(c => c.EventDescription).HasMaxLength(100);
             builder.Property(c => c.Date).IsRequired();
             builder.Property(c => c.Time).IsRequired();
 
