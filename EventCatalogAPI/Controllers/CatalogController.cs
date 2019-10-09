@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EventCatalogAPI.Data;
 using EventCatalogAPI.Domain;
+using EventCatalogAPI.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -31,8 +32,15 @@ namespace EventCatalogAPI.Controllers
             var items = await _context.EventItems.OrderBy(c => c.EventName).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
 
             items = changePictureUrl(items);
+            var model = new PaginatedEventItemsViewModel<EventItem>
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                Count = itemsCount,
+                Data = items
+            };
 
-            return Ok(items);
+            return Ok(model);
         }
 
         [HttpGet]
@@ -40,15 +48,15 @@ namespace EventCatalogAPI.Controllers
         public async Task<IActionResult> Items(int? eventTypeId, int? eventCategoryId, int? eventLocationId, [FromQuery] int pageIndex = 0, [FromQuery] int pageSize = 6)
         {
             var root = (IQueryable<EventItem>)_context.EventItems;
-            if (eventCategoryId.HasValue)
+            if (eventCategoryId.HasValue && eventCategoryId != 0)
             {
                 root = root.Where(c => c.EventCategoryId == eventCategoryId);
             }
-            if (eventTypeId.HasValue)
+            if (eventTypeId.HasValue && eventCategoryId != 0)
             {
                 root = root.Where(c => c.EventTypeId == eventTypeId);
             }
-            if (eventLocationId.HasValue)
+            if (eventLocationId.HasValue && eventCategoryId != 0)
             {
                 root = root.Where(c => c.EventLocationId == eventLocationId);
             }
@@ -57,8 +65,15 @@ namespace EventCatalogAPI.Controllers
             var items = await root.OrderBy(c => c.EventName).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
 
             items = changePictureUrl(items);
+            var model = new PaginatedEventItemsViewModel<EventItem>
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                Count = itemsCount,
+                Data = items
+            };
 
-            return Ok(items);
+            return Ok(model);
         }
 
         private List<EventItem> changePictureUrl(List<EventItem> items)
