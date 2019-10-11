@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>0b910daa-26db-4a73-a7c3-29970df85531</ProjectGuid>
+    <ProjectGuid>a41fa5cd-6b18-4f87-b24c-e9f0c8e4e6f2</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/values</DockerServiceUrl>
     <DockerServiceName>eventcatalogapi</DockerServiceName>
