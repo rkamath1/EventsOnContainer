@@ -27,9 +27,14 @@ namespace EventCatalogAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddDbContext<EventCatalogContext>(options =>
-                options.UseSqlServer(Configuration["ConnectionString"]));//connection string from appsettings.json
+            var server = Configuration["DatabaseServer"];
+            var database = Configuration["DatabaseName"];
+            var user = Configuration["DatabaseUser"];
+            var password = Configuration["DatabasePassword"];
+            var connectionString = $"Server={server};Database={database};User ID={user};Password={password}";
+            services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(connectionString));
             //is injected to EventCatalogContext dependancy injection receiver
+            //services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));//Uses ConnectionString from appsettings.json
             services.AddSwaggerGen(options =>
             {
                 options.DescribeAllEnumsAsStrings();
@@ -37,10 +42,11 @@ namespace EventCatalogAPI
                 {
                     Title = "EventsOnContainer - Event catalog Http API",
                     Version = "v1",
-                    Description = "The event catalog API for an EventBrite like site",
+                    Description = "The event catalog API for an" +
+                    " EventBrite like site",
                     TermsOfService = "TermsOfService"
                 });
-            });
+            }); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,13 +57,13 @@ namespace EventCatalogAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger()
+           app.UseSwagger()
                 .UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint($"/swagger/v1/swagger.json", "EventCatalogAPI V1");
-                });
+                });  
 
-            app.UseMvc();
+            app.UseMvc(); 
         }
     }
 }

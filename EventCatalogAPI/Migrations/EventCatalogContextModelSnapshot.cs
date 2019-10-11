@@ -16,8 +16,9 @@ namespace EventCatalogAPI.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("Relational:Sequence:.event_catalog_hilo", "'event_catalog_hilo', '', '1', '10', '', '', 'Int64', 'False'")
                 .HasAnnotation("Relational:Sequence:.event_category_hilo", "'event_category_hilo', '', '1', '10', '', '', 'Int64', 'False'")
+                .HasAnnotation("Relational:Sequence:.event_hilo", "'event_hilo', '', '1', '10', '', '', 'Int64', 'False'")
+                .HasAnnotation("Relational:Sequence:.event_location_hilo", "'event_location_hilo', '', '1', '10', '', '', 'Int64', 'False'")
                 .HasAnnotation("Relational:Sequence:.event_type_hilo", "'event_type_hilo', '', '1', '10', '', '', 'Int64', 'False'")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -41,29 +42,18 @@ namespace EventCatalogAPI.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:HiLoSequenceName", "event_catalog_hilo")
+                        .HasAnnotation("SqlServer:HiLoSequenceName", "event_hilo")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
 
-                    b.Property<string>("AddressLine1")
-                        .IsRequired()
-                        .HasMaxLength(300);
-
-                    b.Property<string>("AddressLine2")
-                        .HasMaxLength(300);
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
                     b.Property<string>("Date")
-                        .IsRequired()
-                        .HasMaxLength(10);
+                        .IsRequired();
 
                     b.Property<int>("EventCategoryId");
 
                     b.Property<string>("EventDescription")
-                        .IsRequired()
-                        .HasMaxLength(10000);
+                        .HasMaxLength(100);
+
+                    b.Property<int>("EventLocationId");
 
                     b.Property<string>("EventName")
                         .IsRequired()
@@ -72,35 +62,49 @@ namespace EventCatalogAPI.Migrations
                     b.Property<int>("EventTypeId");
 
                     b.Property<string>("OrganizerName")
+                        .IsRequired()
                         .HasMaxLength(100);
 
                     b.Property<string>("PictureUrl");
 
-                    b.Property<decimal>("Price");
-
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasMaxLength(30);
+                    b.Property<decimal>("TicketPrice");
 
                     b.Property<string>("Time")
-                        .IsRequired()
-                        .HasMaxLength(7);
+                        .IsRequired();
 
                     b.Property<string>("VenueName")
                         .IsRequired()
-                        .HasMaxLength(250);
-
-                    b.Property<string>("Zip")
-                        .IsRequired()
-                        .HasMaxLength(5);
+                        .HasMaxLength(100);
 
                     b.HasKey("Id");
 
                     b.HasIndex("EventCategoryId");
 
+                    b.HasIndex("EventLocationId");
+
                     b.HasIndex("EventTypeId");
 
                     b.ToTable("EventCatalog");
+                });
+
+            modelBuilder.Entity("EventCatalogAPI.Domain.EventLocation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:HiLoSequenceName", "event_location_hilo")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EventLocations");
                 });
 
             modelBuilder.Entity("EventCatalogAPI.Domain.EventType", b =>
@@ -124,6 +128,11 @@ namespace EventCatalogAPI.Migrations
                     b.HasOne("EventCatalogAPI.Domain.EventCategory", "EventCategory")
                         .WithMany()
                         .HasForeignKey("EventCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("EventCatalogAPI.Domain.EventLocation", "EventLocation")
+                        .WithMany()
+                        .HasForeignKey("EventLocationId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("EventCatalogAPI.Domain.EventType", "EventType")

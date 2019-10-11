@@ -12,20 +12,15 @@ namespace EventCatalogAPI.Domain
         public string OrganizerName { get; set; }
         public string EventDescription { get; set; }
         public string VenueName { get; set; }
-        public string AddressLine1 { get; set; }
-        public string AddressLine2 { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
         public string Date { get; set; }
-        public string Time { get; set; }
-        public decimal Price { get; set; }
         public string PictureUrl { get; set; }
-
-        public int EventTypeId { get; set; }
-        public virtual EventType EventType { get; set; }//navigational property
-
+        public decimal TicketPrice { get; set; }
+        public string Time { get; set; }
         public int EventCategoryId { get; set; }
         public virtual EventCategory EventCategory { get; set; }
+        public int EventTypeId { get; set; }
+        public virtual EventType EventType { get; set; }
+        public int EventLocationId { get; set; }
+        public virtual EventLocation EventLocation { get; set; }
     }
 }
