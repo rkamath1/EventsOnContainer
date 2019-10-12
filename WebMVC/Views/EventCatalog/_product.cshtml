@@ -1,0 +1,30 @@
+﻿@model WebMVC.Models.EventItem
+
+
+
+
+    <form asp-controller="Cart" asp-action="AddToCart">
+        <img class="esh-catalog-thumbnail" src="@Model.PictureUrl" />
+        <input class="esh-catalog-button" type="submit" value="[ ADD TO CART ]" />
+        <div class="esh-catalog-name">
+            <span>@Model.Name</span>
+        </div>
+        <div class="esh-catalog-price">
+            <span>@Model.Price.ToString("N2")</span>
+        </div>
+        <input type="hidden" asp-for="@Model.EventCategory" name="category" />
+        <input type="hidden" asp-for="@Model.EventCategoryId" name="categoryId" />
+        <input type="hidden" asp-for="@Model.EventType" name="type" />
+        <input type="hidden" asp-for="@Model.EventTypeId" name="typeId" />
+        <input type="hidden" asp-for="@Model.EventLocation" name="location" />
+        <input type="hidden" asp-for="@Model.EventLocationId" name="locationId" />
+        <input type="hidden" asp-for="@Model.Id" name="id" />
+        <input type="hidden" asp-for="@Model.EventName" name="name" />
+        <input type="hidden" asp-for="@Model.OrganizerName" name="organizerName" />
+        <input type="hidden" asp-for="@Model.EventDescription" name="eventdescription" />
+        <input type="hidden" asp-for="@Model.VenueName" name="venueName" />
+        <input type="hidden" asp-for="@Model.Date" name="date" />
+        <input type="hidden" asp-for="@Model.PictureUrl" name="pictureUrl" />
+        <input type="hidden" asp-for="@Model.TicketPrice" name="ticketprice" />
+        <input type="hidden" asp-for="@Model.Time" name="time" />
+    </form>
