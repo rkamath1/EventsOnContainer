@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebMVC.Models;
 
-namespace WebMVC.ViewModel
+namespace WebMVC.ViewModels
 {
     public class EventCatalogIndexViewModel
     {
@@ -13,9 +14,9 @@ namespace WebMVC.ViewModel
         public IEnumerable<SelectListItem> Types { get; set; }
         public IEnumerable<SelectListItem> Locations { get; set; }
         public IEnumerable<EventItem> EventItems { get; set; }
-        public int? eventCategoryFilterApplied { get; set; }
-        public int? eventTypeFilterApplied { get; set; }
-        public int? eventLocationFilterApplied { get; set; }
+        public int? CategoryFilterApplied { get; set; }
+        public int? TypeFilterApplied { get; set; }
+        public int? LocationFilterApplied { get; set; }
 
     }
 }

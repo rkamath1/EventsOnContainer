@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace WebMVC.Infrastructure
 {
-    interface IHttpClient
+    public interface IHttpClient
     {
         Task<string> GetStringAsync(string uri,
             string authorizationToken = null,
@@ -24,5 +25,7 @@ namespace WebMVC.Infrastructure
         Task<HttpResponseMessage> DeleteAsync(string uri,
             string authorizationToken = null,
             string authorizationMethod = "Bearer");
+
     }
 }
+

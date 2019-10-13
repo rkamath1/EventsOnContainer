@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using WebMVC.Infrastructure;
+using WebMVC.Models;
 
 namespace WebMVC.Services
 {
@@ -19,10 +21,10 @@ namespace WebMVC.Services
             _baseUri = $"{config["CatalogUrl"]}/api/catalog";
             _client = client;
         }
-        public async Task<EventCatalog> GetEventCatalogItemsAsync(int page, int size, int? eventCategory, int? eventType, int? eventLocation)
+        public async Task<EventCatalog> GetEventCatalogItemsAsync(int page, int size, int? eventType, int? eventCategory, int? eventLocation)
         {
-            var eventCatalogItemsUri = ApiPaths.EventCatalog.GetAllEventCatalogItems(_baseUri, page, size, eventCategory, eventType, eventLocation);
-            var dataString = await _client.GetStringAsync(eventCataogItems);
+            var catalogItemsUri = ApiPaths.EventCatalog.GetAllEventCatalogItems(_baseUri, page, size, eventType, eventCategory, eventLocation);
+            var dataString = await _client.GetStringAsync(catalogItemsUri);
             var response = JsonConvert.DeserializeObject<EventCatalog>(dataString);
             return response;
         }
@@ -74,8 +76,9 @@ namespace WebMVC.Services
                 items.Add(new SelectListItem
                 {
                     Value = location.Value<string>("id"),
-                    Text = location.Value<string>("city"),
-                    Text = location.Value<string>("state")
+                    Text = location.Value<string>("city", "state")
+                    //Text1 = location.Value<string>("state")
+                    
                 }
                 );
             }

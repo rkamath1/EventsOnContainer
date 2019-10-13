@@ -7,10 +7,10 @@
         <img class="esh-catalog-thumbnail" src="@Model.PictureUrl" />
         <input class="esh-catalog-button" type="submit" value="[ ADD TO CART ]" />
         <div class="esh-catalog-name">
-            <span>@Model.Name</span>
+            <span>@Model.EventName</span>
         </div>
         <div class="esh-catalog-price">
-            <span>@Model.Price.ToString("N2")</span>
+            <span>@Model.TicketPrice.ToString("N2")</span>
         </div>
         <input type="hidden" asp-for="@Model.EventCategory" name="category" />
         <input type="hidden" asp-for="@Model.EventCategoryId" name="categoryId" />

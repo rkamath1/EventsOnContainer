@@ -50,13 +50,13 @@
     <div class="container">
         <form asp-action="Index" asp-controller="EventCatalog" method="post">
             <label class="esh-catalog-label" data-title="category">
-                <select asp-for="@Model.EventCategoryFilterApplied" asp-items="@Model.Category" class="esh-catalog-filter"></select>
+                <select asp-for="@Model.TypeFilterApplied" asp-items="@Model.Types" class="esh-catalog-filter"></select>
             </label>
             <label class="esh-catalog-label" data-title="type">
-                <select asp-for="@Model.EventTypeFilterApplied" asp-items="@Model.Type" class="esh-catalog-filter"></select>
+                <select asp-for="@Model.CategoryFilterApplied" asp-items="@Model.Categories" class="esh-catalog-filter"></select>
             </label>
             <label class="esh-catalog-label" data-title="location">
-                <select asp-for="@Model.EventLocationFilterApplied" asp-items="@Model.Location" class="esh-catalog-filter"></select>
+                <select asp-for="@Model.LocationFilterApplied" asp-items="@Model.Locations" class="esh-catalog-filter"></select>
             </label>
             <input class="esh-catalog-send" type="image" src="~/images/arrow-right.svg" />
         </form>
@@ -68,10 +68,10 @@
         @Html.Partial("_pagination", Model.PaginationInfo)
 
         <div class="esh-catalog-items row">
-            @foreach (var EventItem in Model.EventItems)
+            @foreach (var eventItem in Model.EventItems)
             {
                 <div class="esh-catalog-item col-md-4">
-                    @Html.Partial("_product", catalogItem)
+                    @Html.Partial("_product", eventItem)
                 </div>
             }
         </div>
