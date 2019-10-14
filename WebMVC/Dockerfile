@@ -3,11 +3,11 @@ WORKDIR /app
 EXPOSE 80
 
 COPY . .
-RUN dotnet restore "EventCatalogAPI.csproj"
+RUN dotnet restore "WebMVC.csproj"
 
 FROM build AS publish
-RUN dotnet publish "EventCatalogAPI.csproj" -c Release -o /app
+RUN dotnet publish "WebMVC.csproj" -c Release -o /app
 
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "EventCatalogAPI.dll"]
+ENTRYPOINT ["dotnet", "WebMVC.dll"]

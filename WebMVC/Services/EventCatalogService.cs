@@ -23,16 +23,16 @@ namespace WebMVC.Services
 
         public async Task<EventCatalog> GetEventCatalogItemsAsync(int page, int size, int? eventCategory, int? eventType, int? eventLocation)
         {
-            var catalogItemsUri = ApiPaths.Catalog
+            var catalogItemsUri = ApiPaths.EventCatalog
                             .GetAllCatalogItems(_baseUri,
                                 page, size, eventCategory, eventType, eventLocation);
             var dataString = await _client.GetStringAsync(catalogItemsUri);
-            var response = JsonConvert.DeserializeObject<Catalog>(dataString);
+            var response = JsonConvert.DeserializeObject<EventCatalog>(dataString);
             return response;
         }
         public async Task<IEnumerable<SelectListItem>> GetEventCategoriesAsync()
         {
-            var categoryUri = ApiPaths.Catalog.GetAllCategories(_baseUri);
+            var categoryUri = ApiPaths.EventCatalog.GetAllCategories(_baseUri);
             var dataString = await _client.GetStringAsync(categoryUri);
             var items = new List<SelectListItem>
             {
@@ -59,7 +59,7 @@ namespace WebMVC.Services
         }
         public async Task<IEnumerable<SelectListItem>> GetEventTypesAsync()
         {
-            var typeUri = ApiPaths.Catalog.GetAllTypes(_baseUri);
+            var typeUri = ApiPaths.EventCatalog.GetAllTypes(_baseUri);
             var dataString = await _client.GetStringAsync(typeUri);
             var items = new List<SelectListItem>
             {
@@ -86,7 +86,7 @@ namespace WebMVC.Services
         }
         public async Task<IEnumerable<SelectListItem>> GetEventLocationsAsync()
         {
-            var locationUri = ApiPaths.Catalog.GetAllLocations(_baseUri);
+            var locationUri = ApiPaths.EventCatalog.GetAllLocations(_baseUri);
             var dataString = await _client.GetStringAsync(locationUri);
             var items = new List<SelectListItem>
             {

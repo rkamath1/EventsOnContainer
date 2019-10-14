@@ -6,8 +6,6 @@ using System.Net.Http;
 
 namespace WebMVC.Infrastructure
 {
-    interface IHttpClient
-    {
         public interface IHttpClient
         {
             Task<string> GetStringAsync(string uri,
@@ -29,5 +27,5 @@ namespace WebMVC.Infrastructure
                 string authorizationMethod = "Bearer");
 
         }
-    }
+    
 }

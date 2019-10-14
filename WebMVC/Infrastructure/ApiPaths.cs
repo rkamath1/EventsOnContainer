@@ -7,7 +7,7 @@ namespace WebMVC.Infrastructure
 {
     public class ApiPaths
     {
-        public static class Catalog
+        public static class EventCatalog
         {
             public static string GetAllTypes(string baseUri)
             {

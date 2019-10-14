@@ -30,7 +30,8 @@ namespace WebMVC
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            services.AddSingleton<IHttpClient, CustomHttpClient>();
+            services.AddTransient<IEventCatalogService, EventCatalogService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -53,7 +54,7 @@ namespace WebMVC
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=EventCatalog}/{action=Index}");
             });
         }
     }
