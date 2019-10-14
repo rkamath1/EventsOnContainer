@@ -40,7 +40,6 @@ namespace WebMVC.Services
                     Value = null,
                     Text =  "All",
                     Selected = true
-
                 }
             };
             var categories = JArray.Parse(dataString);
@@ -67,7 +66,6 @@ namespace WebMVC.Services
                     Value = null,
                     Text =  "All",
                     Selected = true
-
                 }
             };
             var locations = JArray.Parse(dataString);
@@ -76,9 +74,8 @@ namespace WebMVC.Services
                 items.Add(new SelectListItem
                 {
                     Value = location.Value<string>("id"),
-                    Text = location.Value<string>("city", "state")
-                    //Text1 = location.Value<string>("state")
-                    
+                    Text = location.Value<string>("city")
+                    //Text1 = location.Value<string>("state")                    
                 }
                 );
             }
@@ -96,7 +93,6 @@ namespace WebMVC.Services
                     Value = null,
                     Text =  "All",
                     Selected = true
-
                 }
             };
             var types = JArray.Parse(dataString);

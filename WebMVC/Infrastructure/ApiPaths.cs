@@ -19,7 +19,7 @@ namespace WebMVC.Infrastructure
             }
             public static string GetAllEventLocations(string baseUri)
             {
-                return $"{baseUri}eventtypes";
+                return $"{baseUri}eventlocations";
             }
             public static string GetAllEventCatalogItems(string baseUri,
                 int page, int take, int? category, int? type, int? location)
@@ -37,25 +37,7 @@ namespace WebMVC.Infrastructure
                 return $"{baseUri}items{filterQs}?pageIndex={page}&pageSize={take}";
 
             }
-
-        }
-        public static class Basket
-        {
-            public static string GetBasket(string baseUri, string basketId)
-            {
-                return $"{baseUri}/{basketId}";
-            }
-
-            public static string UpdateBasket(string baseUri)
-            {
-                return baseUri;
-            }
-
-            public static string CleanBasket(string baseUri, string basketId)
-            {
-                return $"{baseUri}/{basketId}";
-            }
-        }
-
+        }       
     }
 }
+
