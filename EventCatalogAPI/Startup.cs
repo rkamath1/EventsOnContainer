@@ -34,6 +34,7 @@ namespace EventCatalogAPI
             var connectionString = $"Server={server};Database={database};User ID={user};Password={password}";
             services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(connectionString));
             //is injected to EventCatalogContext dependancy injection receiver
+            //services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));//Uses ConnectionString from appsettings.json
             services.AddSwaggerGen(options =>
             {
                 options.DescribeAllEnumsAsStrings();
