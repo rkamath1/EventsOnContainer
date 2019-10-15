@@ -11,3 +11,4 @@ RUN dotnet publish "EventCatalogAPI.csproj" -c Release -o /app
 WORKDIR /app
 COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "EventCatalogAPI.dll"]
+
