@@ -1,6 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace WebMVC.Infrastructure
@@ -12,17 +16,9 @@ namespace WebMVC.Infrastructure
         {
             _client = new HttpClient();
         }
-        public async Task<HttpResponseMessage> DeleteAsync(string uri, string authorizationToken = null, string authorizationMethod = "Bearer")
+        public Task<HttpResponseMessage> DeleteAsync(string uri, string authorizationToken = null, string authorizationMethod = "Bearer")
         {
-            var requestMessage = new HttpRequestMessage(HttpMethod.Delete, uri);
-            if (authorizationToken != null)
-            {
-
-                requestMessage.Headers.Authorization = new AuthenticationHeaderValue(authorizationMethod, authorizationToken);
-
-            }
-
-            return await _client.SendAsync(requestMessage);
+            throw new NotImplementedException();
         }
 
         public async Task<string> GetStringAsync(string uri, string authorizationToken = null, string authorizationMethod = "Bearer")

@@ -11,29 +11,33 @@ namespace WebMVC.Infrastructure
         {
             public static string GetAllEventCategories(string baseUri)
             {
-                return $"{baseUri}eventcatalogcategories";
+                return $"{baseUri}eventcategories";
             }
             public static string GetAllEventTypes(string baseUri)
             {
-                return $"{baseUri}eventcatalogtypes";
+                return $"{baseUri}eventtypes";
             }
             public static string GetAllEventLocations(string baseUri)
             {
-                return $"{baseUri}eventcataloglocations";
+                return $"{baseUri}eventlocations";
             }
             public static string GetAllEventCatalogItems(string baseUri,
-                int page, int take, int? eventcategory, int? eventtype, int? eventlocation)
+                int page, int take, int? category, int? type, int? location)
             {
                 var filterQs = string.Empty;
-                if(eventcategory.HasValue || eventtype.HasValue || eventlocation.HasValue)
+
+                if (category.HasValue || type.HasValue || location.HasValue)
                 {
-                    var eventcategoriesQs = (eventcategory.HasValue) ? eventcategory.Value.ToString() : "0";
-                    var eventtypeQs = (eventtype.HasValue) ? eventtype.Value.ToString() : "0";
-                    var eventlocationQs = (eventlocation.HasValue) ? eventlocation.Value.ToString() : "0";
-                    filterQs = $"/type/{eventtypeQs}/category/{eventcategoryQs}/location/{eventlocationQs}";
+                    var categoryQs = (category.HasValue) ? category.Value.ToString() : "null";
+                    var typeQs = (type.HasValue) ? type.Value.ToString() : "null";
+                    var locationQs = (location.HasValue) ? location.Value.ToString() : "null"; 
+                    filterQs = $"/category/{categoryQs}/type/{typeQs}/location/{locationQs}";
                 }
+
                 return $"{baseUri}items{filterQs}?pageIndex={page}&pageSize={take}";
+
             }
-        }
+        }       
     }
 }
+
