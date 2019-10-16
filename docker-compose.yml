@@ -23,14 +23,14 @@ services:
       - backend
       - frontend
     depends_on:
-      - mssqlserver
+      - mssqlserver1
 
   webmvc:
     build:
-      context: .\WebMVC
+      context: .\webmvc
       dockerfile: Dockerfile
     image: events/webmvc
-    container_name: eventfinder
+    container_name: eventfinderhome
     environment:
       CatalogUrl: http://catalog
       ASPNETCORE_ENVIRONMENT: Development
@@ -41,12 +41,12 @@ services:
     depends_on:
       - catalog
 
-  mssqlserver:
+  mssqlserver1:
     image: "microsoft/mssql-server-linux:latest"
     environment: 
       ACCEPT_EULA: Y
       SA_PASSWORD: EventApi1(!)
-    container_name: eventsqlserver
+    container_name: eventsqlserverhome
     ports:
       - "1446:1433"
     networks:

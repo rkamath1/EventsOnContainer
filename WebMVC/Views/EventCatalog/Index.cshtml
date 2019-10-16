@@ -66,18 +66,18 @@
 <div class="container">
     @if (Model.EventItems.Count() > 0)
     {
-        @Html.Partial("_pagination", Model.PaginationInfo)
+        @Html.PartialAsync("_pagination", Model.PaginationInfo)
 
         <div class="esh-catalog-items row">
             @foreach (var eventItem in Model.EventItems)
             {
                 <div class="esh-catalog-item col-md-4">
-                    @Html.Partial("_product", eventItem)
+                    @Html.PartialAsync("_product", eventItem)
                 </div>
             }
         </div>
 
-        @Html.Partial("_pagination", Model.PaginationInfo)
+        @Html.PartialAsync("_pagination", Model.PaginationInfo)
     }
     else
     {

@@ -27,13 +27,13 @@ namespace EventCatalogAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            var server = Configuration["DatabaseServer"];
-            var database = Configuration["DatabaseName"];
-            var user = Configuration["DatabaseUser"];
-            var password = Configuration["DatabasePassword"];
-            var connectionString = $"Server={server};Database={database};User ID={user};Password={password}";
-            services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(connectionString));
-            //services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));//connection string from appsettings.json
+            //var server = Configuration["DatabaseServer"];
+            //var database = Configuration["DatabaseName"];
+            //var user = Configuration["DatabaseUser"];
+            //var password = Configuration["DatabasePassword"];
+            //var connectionString = $"Server={server};Database={database};User ID={user};Password={password}";
+            //services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));//connection string from appsettings.json
             //is injected to EventCatalogContext dependancy injection receiver
             services.AddSwaggerGen(options =>
             {
