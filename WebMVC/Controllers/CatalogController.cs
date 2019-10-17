@@ -8,14 +8,19 @@ using WebMVC.ViewModels;
 
 namespace WebMVC.Controllers
 {
-    public class EventCatalogController : Controller
+    public class CatalogController : Controller
     {
         //IEventCatalogService will be in the service folder
         private readonly IEventCatalogService _service;
-        public EventCatalogController(IEventCatalogService service)
+        public CatalogController(IEventCatalogService service)
         {
             _service = service;
         }
+        public async Task<IActionResult> About()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Index(int? eventTypeFilterApplied, int? eventCategoryFilterApplied, int? eventLocationFilterApplied, int? page)
         {
             var itemsOnPage = 10;
