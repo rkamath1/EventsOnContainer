@@ -14,7 +14,7 @@
             <img src="~/images/banner.png" alt="ASP.NET" class="img-responsive" />
             <div class="carousel-caption" role="option">
                 <p>
-                    Incredible Engagement Rings.
+                    Incredible Events.
                 </p>
             </div>
         </div>
@@ -22,7 +22,7 @@
             <img src="~/images/banner-2.png" alt="Visual Studio" class="img-responsive" />
             <div class="carousel-caption" role="option">
                 <p>
-                    Diamond Engagement Rings are a thing!
+                   Today is the only day. Yesterday is gone!
                 </p>
             </div>
         </div>
@@ -30,7 +30,7 @@
             <img src="~/images/banner-3.png" alt="Package Management" class="img-responsive" />
             <div class="carousel-caption" role="option">
                 <p>
-                    Engagement rings are epitome of luxury.
+                    The only way to do great work is to love what you do.
                 </p>
             </div>
         </div>
@@ -49,16 +49,16 @@
 <section class="esh-catalog-filters">
     <div class="container">
         <form asp-action="Index" asp-controller="EventCatalog" method="post">
-            <label class="esh-catalog-label" data-title="category">
-                <select asp-for="@Model.TypeFilterApplied" asp-items="@Model.Types" class="esh-catalog-filter"></select>
+            <label class="esh-eventcatalog-label" data-title="category">
+                <select asp-for="@Model.TypeFilterApplied" asp-items="@Model.Types" class="esh-eventcatalog-filter"></select>
             </label>
-            <label class="esh-catalog-label" data-title="type">
-                <select asp-for="@Model.CategoryFilterApplied" asp-items="@Model.Categories" class="esh-catalog-filter"></select>
+            <label class="esh-eventcatalog-label" data-title="type">
+                <select asp-for="@Model.CategoryFilterApplied" asp-items="@Model.Categories" class="esh-eventcatalog-filter"></select>
             </label>
-            <label class="esh-catalog-label" data-title="location">
-                <select asp-for="@Model.LocationFilterApplied" asp-items="@Model.Locations" class="esh-catalog-filter"></select>
+            <label class="esh-eventcatalog-label" data-title="location">
+                <select asp-for="@Model.LocationFilterApplied" asp-items="@Model.Locations" class="esh-eventcatalog-filter"></select>
             </label>
-            <input class="esh-catalog-send" type="image" src="~/images/arrow-right.svg" />
+            <input class="esh-eventcatalog-send" type="image" src="~/images/arrow-right.svg" />
         </form>
     </div>
 </section>
@@ -67,10 +67,10 @@
     {
         @Html.Partial("_pagination", Model.PaginationInfo)
 
-        <div class="esh-catalog-items row">
+        <div class="esh-eventcatalog-items row">
             @foreach (var eventItem in Model.EventItems)
             {
-                <div class="esh-catalog-item col-md-4">
+                <div class="esh-eventcatalog-item col-md-4">
                     @Html.Partial("_product", eventItem)
                 </div>
             }
@@ -80,7 +80,7 @@
     }
     else
     {
-        <div class="esh-catalog-items row">
+        <div class="esh-eventcatalog-items row">
             THERE ARE NO RESULTS THAT MATCH YOUR SEARCH
         </div>
     }

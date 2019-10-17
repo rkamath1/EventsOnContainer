@@ -59,7 +59,7 @@ namespace WebMVC.Services
         {
             var locationUri = ApiPaths.EventCatalog.GetAllEventLocations(_baseUri);
             var dataString = await _client.GetStringAsync(locationUri);
-            var items = new List<SelectListItem>
+            var items = new List<SelectListItem> 
             {
                 new SelectListItem
                 {
@@ -74,8 +74,9 @@ namespace WebMVC.Services
                 items.Add(new SelectListItem
                 {
                     Value = location.Value<string>("id"),
-                    Text = location.Value<string>("city")
-                    //Text1 = location.Value<string>("state")                    
+                    //Text = location.Value<string, string>("city", "state")
+                    //Text1 = location.Value<string>("state")
+                    Text = string.Format("{0} {1}", "city", "state")
                 }
                 );
             }

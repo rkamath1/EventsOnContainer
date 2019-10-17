@@ -26,10 +26,10 @@ namespace WebMVC.Infrastructure
             {
                 var filterQs = string.Empty;
 
-                if (category.HasValue || type.HasValue || location.HasValue)
+                if (type.HasValue || category.HasValue || location.HasValue)
                 {
-                    var categoryQs = (category.HasValue) ? category.Value.ToString() : "null";
                     var typeQs = (type.HasValue) ? type.Value.ToString() : "null";
+                    var categoryQs = (category.HasValue) ? category.Value.ToString() : "null";                    
                     var locationQs = (location.HasValue) ? location.Value.ToString() : "null"; 
                     filterQs = $"/category/{categoryQs}/type/{typeQs}/location/{locationQs}";
                 }

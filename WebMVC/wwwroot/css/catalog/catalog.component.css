@@ -91,13 +91,13 @@
 }
 
 @media screen and (max-width: 1024px) {
-    .esh-catalog-item {
+    .esh-eventcatalog-item {
         width: 50%;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .esh-catalog-item {
+    .esh-eventcatalog-item {
         width: 100%;
     }
 }
