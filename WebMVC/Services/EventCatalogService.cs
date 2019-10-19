@@ -18,7 +18,7 @@ namespace WebMVC.Services
 
         public EventCatalogService(IConfiguration config, IHttpClient client)
         {
-            _baseUri = $"{config["CatalogUrl"]}/api/catalog";
+            _baseUri = $"{config["CatalogUrl"]}/api/catalog/";
             _client = client;
         }
         public async Task<EventCatalog> GetEventCatalogItemsAsync(int page, int size, int? eventType, int? eventCategory, int? eventLocation)
@@ -75,8 +75,8 @@ namespace WebMVC.Services
                 {
                     Value = location.Value<string>("id"),
                     //Text = location.Value<string, string>("city", "state")
-                    //Text1 = location.Value<string>("state")
-                    Text = string.Format("{0} {1}", "city", "state")
+                    Text = location.Value<string>("city")
+                    //Text = string.Format("{0} {1}", "city", "state")
                 }
                 );
             }
