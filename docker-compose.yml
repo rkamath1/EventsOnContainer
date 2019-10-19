@@ -14,11 +14,11 @@ services:
       DatabaseServer: mssqlserver
       DatabaseName: EventDb
       DatabaseUser: sa
-      DatabasePassword: EventApi1(!)
+      DatabasePassword: EventApi(!)
       ExtrenalEventBaseUrl: http://localhost:6180
     ports:
       - "6180:80"
-    container_name: eventapihome
+    container_name: eventapi
     networks:
       - backend
       - frontend
@@ -34,7 +34,7 @@ services:
     environment:
       CatalogUrl: http://catalog
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://172.20.10.3:5080
+      IdentityUrl: http://192.168.0.38:5080
       CallBackUrl: http://localhost:5207
     ports:
       - "5207:80"
@@ -65,7 +65,7 @@ services:
     image: "microsoft/mssql-server-linux:latest"
     environment: 
       ACCEPT_EULA: Y
-      SA_PASSWORD: EventApi1(!)
+      SA_PASSWORD: EventApi(!)
     container_name: eventsqlserver
     ports:
       - "1445:1433"

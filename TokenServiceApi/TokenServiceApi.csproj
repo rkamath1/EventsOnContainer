@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-TokenServiceApi-3B457966-B81A-4C3C-B204-897D11F50B0F</UserSecretsId>
     <DockerTargetOS>Linux</DockerTargetOS>
   </PropertyGroup>

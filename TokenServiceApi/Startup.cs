@@ -45,7 +45,7 @@ namespace TokenServiceApi
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // configure identity server with in-memory stores, keys, clients and scopes
             services.AddIdentityServer()
