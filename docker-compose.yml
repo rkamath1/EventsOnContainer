@@ -14,17 +14,17 @@ services:
       DatabaseServer: mssqlserver
       DatabaseName: EventDb
       DatabaseUser: sa
-      DatabasePassword: EventApi1(!)
+      DatabasePassword: EventApi(!)
       ExtrenalEventBaseUrl: http://localhost:6180
     ports:
       - "6180:80"
-    container_name: eventapihome
+    container_name: eventapi
     networks:
       - backend
       - frontend
     depends_on:
       - mssqlserver
-
+      
   webmvc:
     build:
       context: .\WebMVC
@@ -40,12 +40,12 @@ services:
       - frontend
     depends_on:
       - catalog
-
+  
   mssqlserver:
     image: "microsoft/mssql-server-linux:latest"
     environment: 
       ACCEPT_EULA: Y
-      SA_PASSWORD: EventApi1(!)
+      SA_PASSWORD: EventApi(!)
     container_name: eventsqlserver
     ports:
       - "1445:1433"

@@ -82,7 +82,7 @@
     margin-top: 1rem;
 }
 
-.esh-catalog-item {
+.esh-eventcatalog-item {
     text-align: center;
     margin-bottom: 1.5rem;
     width: 33%;
@@ -91,7 +91,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-    .esh-catalog-item {
+    .esh-eventcatalog-item {
         width: 50%;
     }
 }
@@ -136,7 +136,7 @@
     text-transform: uppercase;
 }
 
-.esh-catalog-price {
+.esh-eventcatalog-price {
     text-align: center;
     font-weight: 900;
     font-size: 28px;
