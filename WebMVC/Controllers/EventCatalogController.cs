@@ -8,11 +8,11 @@ using WebMVC.ViewModels;
 
 namespace WebMVC.Controllers
 {
-    public class CatalogController : Controller
+    public class EventCatalogController : Controller
     {
         //IEventCatalogService will be in the service folder
         private readonly IEventCatalogService _service;
-        public CatalogController(IEventCatalogService service)
+        public EventCatalogController(IEventCatalogService service)
         {
             _service = service;
         }

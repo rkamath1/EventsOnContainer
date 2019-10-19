@@ -34,7 +34,7 @@ services:
     environment:
       CatalogUrl: http://catalog
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.0.38:5080
+      IdentityUrl: http://192.168.3.104:6170
       CallBackUrl: http://localhost:5207
     ports:
       - "5207:80"
@@ -53,7 +53,7 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       MvcClient: http://localhost:5207
     ports:
-      - "5080:80"
+      - "6170:80"
     container_name: tokenserviceapi
     networks:
       - backend
