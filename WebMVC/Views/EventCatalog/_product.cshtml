@@ -4,12 +4,12 @@
 
 
     <form asp-controller="Cart" asp-action="AddToCart">
-        <img class="esh-catalog-thumbnail" src="@Model.PictureUrl" />
-        <input class="esh-catalog-button" type="submit" value="[ ADD TO CART ]" />
-        <div class="esh-catalog-name">
+        <img class="esh-EventCatalog-thumbnail" src="@Model.PictureUrl" />
+        <input class="esh-EventCatalog-button" type="submit" value="[ ADD TO CART ]" />
+        <div class="esh-EventCatalog-name">
             <span>@Model.EventName</span>
         </div>
-        <div class="esh-catalog-price">
+        <div class="esh-EventCatalog-price">
             <span>@Model.TicketPrice.ToString("N2")</span>
         </div>
         <input type="hidden" asp-for="@Model.EventCategory" name="category" />
