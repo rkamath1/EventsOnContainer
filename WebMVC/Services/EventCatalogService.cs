@@ -21,6 +21,14 @@ namespace WebMVC.Services
             _baseUri = $"{config["CatalogUrl"]}/api/catalog/";
             _client = client;
         }
+
+        public async Task<EventCatalog> GetEventCatalogItemsAsync(int page, int size, int? eventType, int? eventCategory, int? eventLocation)
+        {
+            var catalogItemsUri = ApiPaths.Catalog.GetAllEventCatalogItems(_baseUri, page, size, eventType, eventCategory, eventLocation);
+            var dataString = await _client.GetStringAsync(catalogItemsUri);
+            var response = JsonConvert.DeserializeObject<EventCatalog>(dataString);
+            return response;
+        }
         public async Task<IEnumerable<SelectListItem>> GetEventCategoriesAsync()
         {
             var categoryUri = ApiPaths.Catalog.GetAllEventCategories(_baseUri);
@@ -98,13 +106,6 @@ namespace WebMVC.Services
                 );
             }
             return items;
-        }
-        public async Task<EventCatalog> GetEventCatalogItemsAsync(int page, int size, int? eventType, int? eventCategory, int? eventLocation)
-        {
-            var catalogItemsUri = ApiPaths.Catalog.GetAllEventCatalogItems(_baseUri, page, size, eventType, eventCategory, eventLocation);
-            var dataString = await _client.GetStringAsync(catalogItemsUri);
-            var response = JsonConvert.DeserializeObject<EventCatalog>(dataString);
-            return response;
         }
 
     }
