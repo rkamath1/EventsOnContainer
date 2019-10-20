@@ -23,6 +23,6 @@ namespace WebMVC.Models
         public int EventTypeId { get; set; }
         public string EventType { get; set; }
         public int EventLocationId { get; set; }
-        public string EventLocation { get; set; }
+        public string City { get; set; }
     }
 }
