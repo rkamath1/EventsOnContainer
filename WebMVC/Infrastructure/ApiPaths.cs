@@ -7,16 +7,17 @@ namespace WebMVC.Infrastructure
 {
     public class ApiPaths
     {
-        public static class EventCatalog
+        public static class Catalog
         {
-            public static string GetAllEventCategories(string baseUri)
-            {
-                return $"{baseUri}eventcategories";
-            }
             public static string GetAllEventTypes(string baseUri)
             {
                 return $"{baseUri}eventtypes";
             }
+            public static string GetAllEventCategories(string baseUri)
+            {
+                return $"{baseUri}eventcategories";
+            }
+            
             public static string GetAllEventLocations(string baseUri)
             {
                 return $"{baseUri}eventlocations";

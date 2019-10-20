@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "EventCatalog";
+    ViewData["Title"] = "TheHaps Events";
     @model WebMVC.ViewModels.EventCatalogIndexViewModel
 }
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
@@ -11,29 +11,30 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="~/images/banner.png" alt="ASP.NET" class="img-responsive" />
+            <img src="~/images/banner.jpg" alt="ASP.NET" class="img-responsive" />
             <div class="carousel-caption" role="option">
                 <p>
-                    Incredible Events.
+                    The way to find joy in your city
                 </p>
             </div>
         </div>
         <div class="item">
-            <img src="~/images/banner1.png" alt="Visual Studio" class="img-responsive" />
+            <img src="~/images/banner-2.png" alt="Visual Studio" class="img-responsive" />
             <div class="carousel-caption" role="option">
                 <p>
-                   Today is the only day. Yesterday is gone!
+                    Many happenings
                 </p>
             </div>
         </div>
         <div class="item">
-            <img src="~/images/banner2.png" alt="Package Management" class="img-responsive" />
+            <img src="~/images/banner-3.png" alt="Package Management" class="img-responsive" />
             <div class="carousel-caption" role="option">
                 <p>
-                    The only way to do great work is to love what you do.
+                    One place to find them all!
                 </p>
             </div>
         </div>
+
     </div>
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -45,19 +46,19 @@
     </a>
 </div>
 
-<section class="esh-EventCatalog-filters">
+<section class="esh-catalog-filters">
     <div class="container">
         <form asp-action="Index" asp-controller="EventCatalog" method="post">
-            <label class="esh-EventCatalog-label" data-title="type">
-                <select asp-for="@Model.TypeFilterApplied" asp-items="@Model.Types" class="esh-EventCatalog-filter"></select>
+            <label class="esh-catalog-label" data-title="type">
+                <select asp-for="@Model.TypeFilterApplied" asp-items="@Model.Types" class="esh-catalog-filter"></select>
             </label>
-            <label class="esh-EventCatalog-label" data-title="category">
-                <select asp-for="@Model.CategoryFilterApplied" asp-items="@Model.Categories" class="esh-EventCatalog-filter"></select>
+            <label class="esh-catalog-label" data-title="category">
+                <select asp-for="@Model.CategoryFilterApplied" asp-items="@Model.Categories" class="esh-catalog-filter"></select>
             </label>
-            <label class="esh-EventCatalog-label" data-title="location">
-                <select asp-for="@Model.LocationFilterApplied" asp-items="@Model.Locations" class="esh-EventCatalog-filter"></select>
+            <label class="esh-catalog-label" data-title="location">
+                <select asp-for="@Model.LocationFilterApplied" asp-items="@Model.Locations" class="esh-catalog-filter"></select>
             </label>
-            <input class="esh-EventCatalog-send" type="image" src="~/images/arrow-right.svg" />
+            <input class="esh-catalog-send" type="image" src="~/images/arrow-right.svg" />
         </form>
     </div>
 </section>
@@ -66,10 +67,10 @@
     {
         @await Html.PartialAsync("_pagination", Model.PaginationInfo)
 
-        <div class="esh-EventCatalog-items row">
+        <div class="esh-catalog-items row">
             @foreach (var eventItem in Model.EventItems)
             {
-                <div class="esh-EventCatalog-item col-md-4">
+                <div class="esh-catalog-item col-md-4">
                     @await Html.PartialAsync("_product", eventItem)
                 </div>
             }
@@ -79,7 +80,7 @@
     }
     else
     {
-        <div class="esh-EventCatalog-items row">
+        <div class="esh-catalog-items row">
             THERE ARE NO RESULTS THAT MATCH YOUR SEARCH
         </div>
     }

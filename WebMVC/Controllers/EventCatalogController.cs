@@ -16,10 +16,15 @@ namespace WebMVC.Controllers
         {
             _service = service;
         }
-        public async Task<IActionResult> Index(int? typeFilterApplied, int? categoryFilterApplied, int? locationFilterApplied, int? page)
+        public async Task<IActionResult> About()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Index(int? TypeFilterApplied, int? CategoryFilterApplied, int? LocationFilterApplied, int? page)
         {
             var itemsOnPage = 10;
-            var catalog = await _service.GetEventCatalogItemsAsync (page ?? 0, itemsOnPage, typeFilterApplied, categoryFilterApplied, locationFilterApplied);
+            var catalog = await _service.GetEventCatalogItemsAsync (page ?? 0, itemsOnPage, TypeFilterApplied, CategoryFilterApplied, LocationFilterApplied);
             var vm = new EventCatalogIndexViewModel
             {
                 PaginationInfo = new PaginationInfo
@@ -33,9 +38,9 @@ namespace WebMVC.Controllers
                 Categories = await _service.GetEventCategoriesAsync(),
                 Types = await _service.GetEventTypesAsync(),
                 Locations = await _service.GetEventLocationsAsync(),
-                TypeFilterApplied = typeFilterApplied ?? 0,
-                CategoryFilterApplied = categoryFilterApplied ?? 0,
-                LocationFilterApplied = locationFilterApplied ?? 0
+                TypeFilterApplied = TypeFilterApplied ?? 0,
+                CategoryFilterApplied = CategoryFilterApplied ?? 0,
+                LocationFilterApplied = LocationFilterApplied ?? 0
 
             };
             vm.PaginationInfo.Previous = (vm.PaginationInfo.ActualPage == 0) ? "is-disabled" : "";
