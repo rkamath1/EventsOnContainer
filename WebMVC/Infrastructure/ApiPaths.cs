@@ -31,7 +31,7 @@ namespace WebMVC.Infrastructure
                     var typeQs = (type.HasValue) ? type.Value.ToString() : "null";
                     var categoryQs = (category.HasValue) ? category.Value.ToString() : "null";                    
                     var locationQs = (location.HasValue) ? location.Value.ToString() : "null"; 
-                    filterQs = $"/category/{categoryQs}/type/{typeQs}/location/{locationQs}";
+                    filterQs = $"/type/{typeQs}/category/{categoryQs}/location/{locationQs}";
                 }
 
                 return $"{baseUri}items{filterQs}?pageIndex={page}&pageSize={take}";

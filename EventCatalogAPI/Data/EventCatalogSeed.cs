@@ -48,7 +48,11 @@ namespace EventCatalogAPI.Data
                 new EventItem() {EventTypeId = 3, EventCategoryId =2, EventLocationId = 1, EventName = "Friday Night Bites", OrganizerName = "The Potter's house", VenueName = "Malden",Date = "10/15/2019", Time = "11:00AM", TicketPrice = 15, PictureUrl = "http://externaleventbaseurltobereplaced/api/pic/8"},
                 new EventItem() {EventTypeId = 1, EventCategoryId =2, EventLocationId = 3, EventName = "RAISE 2019", OrganizerName = "Join Alyssa Blask", VenueName = "Gloucester",Date = "9/21/2019", Time = "7:00PM", TicketPrice = 20, PictureUrl = "http://externaleventbaseurltobereplaced/api/pic/9"},
                 new EventItem() {EventTypeId = 1, EventCategoryId =3, EventLocationId = 2, EventName = "Family Night", OrganizerName = "Family Reach", VenueName = "Bostob Museum", Date = "9/30/2019", Time = "1:00PM", TicketPrice = 10, PictureUrl = "http://externaleventbaseurltobereplaced/api/pic/10"},
-
+                new EventItem() {EventTypeId = 3, EventCategoryId =2, EventLocationId = 1, EventName = "Remlinger Farms Fall Festival", OrganizerName = "Remlinger Farm", VenueName = "Remlinger Farms", Date = "10/27/2019", Time = "10:00AM", TicketPrice = 25, PictureUrl = "http://externaleventbaseurltobereplaced/api/pic/11"},
+                new EventItem() {EventTypeId = 2, EventCategoryId =2, EventLocationId = 1, EventName = "Twirl On Ice", OrganizerName = "RTC", VenueName = "Redmond Town Center", Date = "11/29/2019", Time = "10:00AM", TicketPrice = 7, PictureUrl = "http://externaleventbaseurltobereplaced/api/pic/12"},
+                new EventItem() {EventTypeId = 3, EventCategoryId =1, EventLocationId = 2, EventName = "Skydeck Chicago", OrganizerName = "Tiqets", VenueName = "Willis Tower", Date = "12/31/2019", Time = "4:015AM", TicketPrice = 25, PictureUrl = "http://externaleventbaseurltobereplaced/api/pic/13"},
+                new EventItem() {EventTypeId = 3, EventCategoryId =2, EventLocationId = 2, EventName = "Donut Fest", OrganizerName = "Social Power Hour", VenueName = "Brewing Production Facility", Date = "12/24/2019", Time = "4:00PM", TicketPrice = 45, PictureUrl = "http://externaleventbaseurltobereplaced/api/pic/14"},
+                new EventItem() {EventTypeId = 1, EventCategoryId =3, EventLocationId = 3, EventName = "SantaCon Boston", OrganizerName = "Santa Boston", VenueName = "Boston", Date = "12/7/2019", Time = "12:00PM", TicketPrice = 25, PictureUrl = "http://externaleventbaseurltobereplaced/api/pic/15"}
             };
         }
 
