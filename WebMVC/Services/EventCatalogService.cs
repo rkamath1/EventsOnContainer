@@ -37,7 +37,7 @@ namespace WebMVC.Services
             {
                 new SelectListItem
                 {
-                    Value = null,
+                    Value = "0",
                     Text =  "All",
                     Selected = true
                 }
@@ -63,7 +63,7 @@ namespace WebMVC.Services
             {
                 new SelectListItem
                 {
-                    Value = null,
+                    Value = "0",
                     Text =  "All",
                     Selected = true
                 }
@@ -91,7 +91,7 @@ namespace WebMVC.Services
             {
                 new SelectListItem
                 {
-                    Value = null,
+                    Value = "0",
                     Text =  "All",
                     Selected = true
                 }
