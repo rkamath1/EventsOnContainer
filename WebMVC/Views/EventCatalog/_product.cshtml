@@ -5,9 +5,15 @@
 
     <form asp-controller="Cart" asp-action="AddToCart">
         <img class="esh-catalog-thumbnail" src="@Model.PictureUrl" />
-        <input class="esh-catalog-button" type="submit" value="[ ADD TO CART ]" />
+        <input class="esh-catalog-button" type="submit" value="Purchase Ticket" />
         <div class="esh-catalog-name">
             <span>@Model.EventName</span>
+        </div>
+        <div class="esh-catalog-venue">
+            <span>@Model.VenueName</span>
+        </div>
+        <div class="esh-catalog-date">
+            <span>@Model.Date</span>
         </div>
         <div class="esh-catalog-price">
             <span>@Model.TicketPrice.ToString("N2")</span>
@@ -16,12 +22,11 @@
         <input type="hidden" asp-for="@Model.EventCategoryId" name="categoryId" />
         <input type="hidden" asp-for="@Model.EventType" name="type" />
         <input type="hidden" asp-for="@Model.EventTypeId" name="typeId" />
-        <input type="hidden" asp-for="@Model.EventLocation" name="location" />
         <input type="hidden" asp-for="@Model.EventLocationId" name="locationId" />
-        <input type="hidden" asp-for="@Model.EventDescription" name="description" />
         <input type="hidden" asp-for="@Model.Id" name="id" />
-        <input type="hidden" asp-for="@Model.EventName" name="name" />
-        <input type="hidden" asp-for="@Model.VenueName" name="venuename" />
+        <input type="hidden" asp-for="@Model.OrganizerName" name="organizerName" />
+        <input type="hidden" asp-for="@Model.EventDescription" name="eventdescription" />
         <input type="hidden" asp-for="@Model.PictureUrl" name="pictureUrl" />
-        <input type="hidden" asp-for="@Model.TicketPrice" name="price" />
+        <input type="hidden" asp-for="@Model.TicketPrice" name="ticketprice" />
+        <input type="hidden" asp-for="@Model.Time" name="time" />
     </form>

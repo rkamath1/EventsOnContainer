@@ -26,15 +26,15 @@ namespace EventCatalogAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            //var server = Configuration["DatabaseServer"];
-            //var database = Configuration["DatabaseName"];
-            //var user = Configuration["DatabaseUser"];
-            //var password = Configuration["DatabasePassword"];
-            //var connectionString = $"Server={server};Database={database};User ID={user};Password={password}";
-            //services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(connectionString));
-            services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));//connection string from appsettings.json
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            var server = Configuration["DatabaseServer"];
+            var database = Configuration["DatabaseName"];
+            var user = Configuration["DatabaseUser"];
+            var password = Configuration["DatabasePassword"];
+            var connectionString = $"Server={server};Database={database};User ID={user};Password={password}";
+            services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(connectionString));
             //is injected to EventCatalogContext dependancy injection receiver
+            //services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));//Uses ConnectionString from appsettings.json
             services.AddSwaggerGen(options =>
             {
                 options.DescribeAllEnumsAsStrings();

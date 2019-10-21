@@ -8,7 +8,6 @@ namespace WebMVC.Infrastructure
 {
     public interface IHttpClient
     {
-
         Task<string> GetStringAsync(string uri,
             string authorizationToken = null,
             string authorizationMethod = "Bearer");
@@ -26,5 +25,7 @@ namespace WebMVC.Infrastructure
         Task<HttpResponseMessage> DeleteAsync(string uri,
             string authorizationToken = null,
             string authorizationMethod = "Bearer");
+
     }
 }
+
