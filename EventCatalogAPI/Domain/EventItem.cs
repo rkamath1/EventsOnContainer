@@ -18,12 +18,12 @@ namespace EventCatalogAPI.Domain
         public string Time { get; set; }
 
         public int EventCategoryId { get; set; }
-        public string EventCategory { get; set; }
+        public virtual EventCategory EventCategory{ get; set; }
 
         public int EventTypeId { get; set; }
-        public string EventType { get; set; }
+        public virtual EventType EventType{ get; set; }
 
         public int EventLocationId { get; set; }
-        public string EventLocation { get; set; }
+        public virtual EventLocation EventLocation{ get; set; }
     }
 }
