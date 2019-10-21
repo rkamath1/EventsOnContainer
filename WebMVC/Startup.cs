@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using WebMVC.Infrastructure;
+using WebMVC.Models;
 using WebMVC.Services;
 
 namespace WebMVC
@@ -35,8 +38,44 @@ namespace WebMVC
 
             services.AddSingleton<IHttpClient, CustomHttpClient>();
             services.AddTransient<IEventCatalogService, EventCatalogService>();
+            services.AddTransient<IIdentityService<ApplicationUser>, IdentityService>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            var identityUrl = Configuration.GetValue<string>("IdentityUrl");
+            var callBackUrl = Configuration.GetValue<string>("CallBackUrl");
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                // options.DefaultAuthenticateScheme = "Cookies";
+            })
+            .AddCookie()
+            .AddOpenIdConnect(options => {
+                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+
+                options.Authority = identityUrl.ToString();
+                options.SignedOutRedirectUri = callBackUrl.ToString();
+                options.ClientId = "mvc";
+                options.ClientSecret = "secret";//Demo purposes only, do not use secret here
+                options.ResponseType = "code id_token";
+                options.SaveTokens = true;
+                options.GetClaimsFromUserInfoEndpoint = true;
+                options.RequireHttpsMetadata = false;
+                options.Scope.Add("openid");
+                options.Scope.Add("profile");
+                options.Scope.Add("offline_access");
+                options.Scope.Add("basket");
+                options.Scope.Add("order");
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+
+                    NameClaimType = "name",
+                    RoleClaimType = "role"
+                };
+
+
+
+            });
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,11 +88,10 @@ namespace WebMVC
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>

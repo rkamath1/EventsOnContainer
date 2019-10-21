@@ -31,9 +31,8 @@ namespace EventCatalogAPI.Controllers
             var itemsCount = await _context.EventItems.LongCountAsync();
             var items = await _context.EventItems.OrderBy(c => c.EventName).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
 
-            items = changePictureUrl(items);
-
-            var model = new PaginatedEventItemsViewModel<EventItem>
+            items = ChangePictureUrl(items);
+            var model = new PaginatedItemsViewModel<EventItem>
             {
                 PageIndex = pageIndex,
                 PageSize = pageSize,
@@ -65,9 +64,8 @@ namespace EventCatalogAPI.Controllers
             var itemsCount = await root.LongCountAsync();
             var items = await root.OrderBy(c => c.EventName).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
 
-            items = changePictureUrl(items);
-
-            var model = new PaginatedEventItemsViewModel<EventItem>
+            items = ChangePictureUrl(items);
+            var model = new PaginatedItemsViewModel<EventItem>
             {
                 PageIndex = pageIndex,
                 PageSize = pageSize,
@@ -78,7 +76,7 @@ namespace EventCatalogAPI.Controllers
             return Ok(model);
         }
 
-        private List<EventItem> changePictureUrl(List<EventItem> items)
+        private List<EventItem> ChangePictureUrl(List<EventItem> items)
         {
             items.ForEach(c => c.PictureUrl = c.PictureUrl.Replace("http://externaleventbaseurltobereplaced", _config["ExternalEventBaseUrl"]));
             return items;
