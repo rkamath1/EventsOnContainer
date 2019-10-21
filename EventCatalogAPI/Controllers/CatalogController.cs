@@ -56,7 +56,8 @@ namespace EventCatalogAPI.Controllers
             {
                 root = root.Where(c => c.EventTypeId == eventTypeId);
             }
-            if (eventLocationId.HasValue && eventLocationId != 0)
+
+            if (eventLocationId.HasValue && eventLocationId !=0)
             {
                 root = root.Where(c => c.EventLocationId == eventLocationId);
             }

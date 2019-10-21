@@ -48,6 +48,7 @@ namespace EventCatalogAPI.Data
             builder.Property(c => c.Date).IsRequired();
             builder.Property(c => c.Time).IsRequired();
 
+            builder.HasOne(c => c.EventType).WithMany().HasForeignKey(c => c.EventTypeId);
             builder.HasOne(c => c.EventLocation).WithMany().HasForeignKey(c => c.EventLocationId);
             builder.HasOne(c => c.EventCategory).WithMany().HasForeignKey(c => c.EventCategoryId);
 

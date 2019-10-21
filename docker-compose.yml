@@ -15,7 +15,7 @@ services:
       DatabaseName: EventDb
       DatabaseUser: sa
       DatabasePassword: EventApi(!)
-      ExtrenalEventBaseUrl: http://localhost:6180
+      ExtrenalEventBaseUrl: http://localhost:6081
     ports:
       - "6180:80"
     container_name: eventapi
@@ -29,7 +29,7 @@ services:
     build:
       context: .\WebMVC
       dockerfile: Dockerfile
-    image: events/webmvc
+    image: events/webmvcs
     container_name: eventfinder
     environment:
       CatalogUrl: http://catalog
@@ -66,7 +66,7 @@ services:
     environment: 
       ACCEPT_EULA: Y
       SA_PASSWORD: EventApi(!)
-    container_name: eventsqlserver
+    container_name: thehapssqlserver
     ports:
       - "1445:1433"
     networks:

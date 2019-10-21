@@ -16,11 +16,14 @@ namespace EventCatalogAPI.Domain
         public string PictureUrl { get; set; }
         public decimal TicketPrice { get; set; }
         public string Time { get; set; }
+
         public int EventCategoryId { get; set; }
-        public virtual EventCategory EventCategory { get; set; }
+        public virtual EventCategory EventCategory{ get; set; }
+
         public int EventTypeId { get; set; }
-        public virtual EventType EventType { get; set; }
+        public virtual EventType EventType{ get; set; }
+
         public int EventLocationId { get; set; }
-        public virtual EventLocation EventLocation { get; set; }
+        public virtual EventLocation EventLocation{ get; set; }
     }
 }
