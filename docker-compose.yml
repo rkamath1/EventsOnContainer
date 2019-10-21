@@ -29,12 +29,12 @@ services:
     build:
       context: .\WebMVC
       dockerfile: Dockerfile
-    image: events/webmvcs
+    image: events/webmvc
     container_name: eventfinder
     environment:
       CatalogUrl: http://catalog
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.3.104:6170
+      IdentityUrl: http://192.168.0.38:6170
       CallBackUrl: http://localhost:5207
     ports:
       - "5207:80"
@@ -66,7 +66,7 @@ services:
     environment: 
       ACCEPT_EULA: Y
       SA_PASSWORD: EventApi(!)
-    container_name: thehapssqlserver
+    container_name: eventsqlserver
     ports:
       - "1445:1433"
     networks:

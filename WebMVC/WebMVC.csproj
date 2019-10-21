@@ -6,40 +6,6 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\fonts\Montserrat-Bold.svg" />
-    <None Include="wwwroot\fonts\Montserrat-Bold.woff2" />
-    <None Include="wwwroot\fonts\Montserrat-Regular.svg" />
-    <None Include="wwwroot\fonts\Montserrat-Regular.woff2" />
-    <None Include="wwwroot\images\arrow-right.svg" />
-    <None Include="wwwroot\images\arrows.psd" />
-    <None Include="wwwroot\images\banner1.svg" />
-    <None Include="wwwroot\images\banner2.svg" />
-    <None Include="wwwroot\images\banner3.svg" />
-    <None Include="wwwroot\images\banner4.svg" />
-    <None Include="wwwroot\images\fb.psd" />
-    <None Include="wwwroot\images\g+.psd" />
-    <None Include="wwwroot\images\img-sprite.psd" />
-    <None Include="wwwroot\images\logo.psd" />
-    <None Include="wwwroot\images\main_banner_text.svg" />
-    <None Include="wwwroot\images\radius.psd" />
-    <None Include="wwwroot\images\refresh.svg" />
-    <None Include="wwwroot\images\social.psd" />
-    <None Include="wwwroot\images\star.psd" />
-    <None Include="wwwroot\images\s_arrow.psd" />
-    <None Include="wwwroot\images\tw.psd" />
-    <None Include="wwwroot\js\easing.js" />
-    <None Include="wwwroot\js\jquery.etalage.min.js" />
-    <None Include="wwwroot\js\jquery.flexisel.js" />
-    <None Include="wwwroot\js\jquery.jscrollpane.min.js" />
-    <None Include="wwwroot\js\jquery.min.js" />
-    <None Include="wwwroot\js\jquery.wmuSlider.js" />
-    <None Include="wwwroot\js\megamenu.js" />
-    <None Include="wwwroot\js\move-top.js" />
-    <None Include="wwwroot\js\site.js" />
-    <None Include="wwwroot\js\site.min.js" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
