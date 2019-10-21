@@ -48,15 +48,15 @@ namespace EventCatalogAPI.Controllers
         public async Task<IActionResult> Items(int? eventTypeId, int? eventCategoryId, int? eventLocationId, [FromQuery] int pageIndex = 0, [FromQuery] int pageSize = 6)
         {
             var root = (IQueryable<EventItem>)_context.EventItems;
-            if (eventCategoryId.HasValue)
+            if (eventCategoryId.HasValue && eventCategoryId !=0)
             {
                 root = root.Where(c => c.EventCategoryId == eventCategoryId);
             }
-            if (eventTypeId.HasValue)
+            if (eventTypeId.HasValue && eventTypeId !=0)
             {
                 root = root.Where(c => c.EventTypeId == eventTypeId);
             }
-            if (eventLocationId.HasValue)
+            if (eventLocationId.HasValue && eventLocationId !=0)
             {
                 root = root.Where(c => c.EventLocationId == eventLocationId);
             }
