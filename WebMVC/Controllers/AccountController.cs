@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Diagnostics;
 using WebMVC.Controllers;
 
-namespace WebMvc.Controllers
+namespace WebMVC.Controllers
 {
     [Authorize]
     public class AccountController : Controller

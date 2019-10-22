@@ -36,6 +36,7 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       IdentityUrl: http://192.168.0.38:6170
       CallBackUrl: http://localhost:5207
+      CartUrl: http://cart
     ports:
       - "5207:80"
     networks:
@@ -43,6 +44,7 @@ services:
     depends_on:
       - catalog
       - tokenserver
+      - cart
 
   tokenserver:
     build:
@@ -61,6 +63,25 @@ services:
     depends_on:
       - mssqlserver
 
+  cart:
+    build:
+      context: .\CartApi
+      dockerfile: Dockerfile
+    image: events/cartapi
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      IdentityUrl: http://192.168.0.38:6170
+      ConnectionString: basket.data
+    ports:
+      - "6066:80"
+    container_name: cartapi
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - basket.data
+      - tokenserver
+
   mssqlserver:
     image: "microsoft/mssql-server-linux:latest"
     environment: 
@@ -71,3 +92,10 @@ services:
       - "1445:1433"
     networks:
       - backend
+
+  basket.data:
+    image: redis
+    ports:
+      - "6078:6379"  
+    networks:
+      - backend 

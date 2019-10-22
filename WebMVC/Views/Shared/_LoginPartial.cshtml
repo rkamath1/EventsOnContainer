@@ -18,10 +18,6 @@
 
                 <section class="esh-identity-drop">
 
-
-
-
-
                     <a class="esh-identity-item"
                        href="javascript:document.getElementById('logoutForm').submit()">
 
@@ -34,7 +30,7 @@
     </section>
 
     <section class="col-lg-1 col-xs-12">
-        @*@await Component.InvokeAsync("Cart", new { user = UserManager.Get(User) })*@
+        @await Component.InvokeAsync("Cart", new { user = UserManager.Get(User) })
     </section>
 
 }
