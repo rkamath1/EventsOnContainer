@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Diagnostics;
 using WebMVC.Controllers;
 
-namespace WebMvc.Controllers
+namespace WebMVC.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -38,7 +38,7 @@ namespace WebMvc.Controllers
             }
             // "Catalog" because UrlHelper doesn't support nameof() for controllers
             // https://github.com/aspnet/Mvc/issues/5853
-            return RedirectToAction(nameof(EventCatalogController.About), "EventCatalog");
+            return RedirectToAction(nameof(EventCatalogController.About), "Catalog");
         }
 
         //public async Task<IActionResult> Signout()

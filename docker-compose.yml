@@ -6,19 +6,19 @@ networks:
 
 services:
   catalog:
-    image: events/catalogapi
+    image: events/catalogapis
     build:
       context: .\EventCatalogAPI
       dockerfile: Dockerfile
     environment:
       DatabaseServer: mssqlserver
-      DatabaseName: EventDb
+      DatabaseName: TheHapsDb
       DatabaseUser: sa
-      DatabasePassword: EventApi(!)
+      DatabasePassword: EventApi1(!)
       ExtrenalEventBaseUrl: http://localhost:6081
     ports:
-      - "6180:80"
-    container_name: eventapi
+      - "6081:80"
+    container_name: eventapis
     networks:
       - backend
       - frontend
@@ -30,44 +30,72 @@ services:
       context: .\WebMVC
       dockerfile: Dockerfile
     image: events/webmvcs
-    container_name: eventfinder
+    container_name: eventsfinder
     environment:
       CatalogUrl: http://catalog
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.0.38:6170
-      CallBackUrl: http://localhost:5207
+      IdentityUrl: http://192.168.0.38:6071
+      CallBackUrl: http://localhost:5209
+      CartUrl: http://cart
     ports:
-      - "5207:80"
+      - "5209:80"
     networks:
       - frontend
     depends_on:
       - catalog
       - tokenserver
+      - cart
 
   tokenserver:
     build:
       context: .\TokenServiceApi
       dockerfile: Dockerfile
-    image: events/tokenapi
+    image: events/tokenapis
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      MvcClient: http://localhost:5207
+      MvcClient: http://localhost:5209
     ports:
-      - "6170:80"
-    container_name: tokenserviceapi
+      - "6071:80"
+    container_name: tokenserviceapis
     networks:
       - backend
       - frontend
     depends_on:
       - mssqlserver
 
+  cart:
+    build:
+      context: .\CartApi
+      dockerfile: Dockerfile
+    image: events/cartapis
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      IdentityUrl: http://192.168.0.38:6071
+      ConnectionString: basket.data
+    ports:
+      - "6065:80"
+    container_name: cartapis
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - basket.data
+      - tokenserver
+
   mssqlserver:
     image: "microsoft/mssql-server-linux:latest"
     environment: 
       ACCEPT_EULA: Y
-      SA_PASSWORD: EventApi(!)
+      SA_PASSWORD: EventApi1(!)
     container_name: thehapssqlserver
     ports:
-      - "1445:1433"
+      - "1446:1433"
     networks:
       - backend
+
+  basket.data:
+    image: redis
+    ports:
+      - "6079:6379"  
+    networks:
+      - backend 
