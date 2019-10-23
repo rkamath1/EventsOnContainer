@@ -34,7 +34,7 @@ services:
     environment:
       CatalogUrl: http://catalog
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.0.38:6170
+      IdentityUrl: http://10.0.0.108:6170
       CallBackUrl: http://localhost:5207
       CartUrl: http://cart
     ports:
@@ -70,7 +70,7 @@ services:
     image: events/cartapi
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.0.38:6170
+      IdentityUrl: http://10.0.0.108:6170
       ConnectionString: basket.data
     ports:
       - "6066:80"
