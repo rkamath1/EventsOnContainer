@@ -55,6 +55,32 @@ namespace OrderApi
                 options.ConfigureWarnings(warnings => warnings.Throw(RelationalEventId.QueryClientEvaluationWarning));
                 //Check Client vs. Server evaluation: https://docs.microsoft.com/en-us/ef/core/querying/client-eval
             });
+
+
+            services.AddSwaggerGen(options =>
+            {
+                options.DescribeAllEnumsAsStrings();
+                options.SwaggerDoc("v1", new Info
+                {
+                    Title = "Ordering HTTP API",
+                    Version = "v1",
+                    Description = "The Ordering Service HTTP API",
+                    TermsOfService = "Terms Of Service"
+                });
+                options.AddSecurityDefinition("oauth2", new OAuth2Scheme
+                {
+                    Type = "oauth2",
+                    Flow = "implicit",
+                    AuthorizationUrl = $"{Configuration.GetValue<string>("IdentityUrl")}/connect/authorize",
+                    TokenUrl = $"{Configuration.GetValue<string>("IdentityUrl")}/connect/token",
+                    Scopes = new Dictionary<string, string>()
+                    {
+                        { "order", "Order Api" }
+                    }
+
+                });
+                options.OperationFilter<AuthorizeCheckOperationFilter>();
+            });
         }
 
         private void ConfigureAuthService(IServiceCollection services)
