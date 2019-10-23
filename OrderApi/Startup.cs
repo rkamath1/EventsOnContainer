@@ -4,7 +4,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using EventsOnContainer.Services.OrderApi.Infrastructure.Filters;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,6 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OrderApi.Data;
+using RabbitMQ.Client;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace OrderApi
@@ -23,16 +27,17 @@ namespace OrderApi
     public class Startup
     {
         ILogger _logger;
-        public Startup(IConfiguration configuration)
+        public IContainer ApplicationContainer { get; private set; }
+        public Startup(ILoggerFactory loggerFactory, IConfiguration configuration)
         {
-           // _logger = loggerFactory.CreateLogger<Startup>();
+            _logger = loggerFactory.CreateLogger<Startup>();
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             ConfigureAuthService(services);
@@ -41,6 +46,7 @@ namespace OrderApi
             var database = Environment.GetEnvironmentVariable("DATABASE") ?? "OrdersDb";
 
             var connectionString = $"Server={hostname};Database={database};User ID=sa;Password={password};";
+
 
             services.AddDbContext<OrdersContext>(options =>
             {
@@ -92,8 +98,32 @@ namespace OrderApi
                     .AllowAnyHeader()
                     .AllowCredentials());
             });
-        }
 
+            var builder = new ContainerBuilder();
+            builder.Register(c =>
+            {
+                return Bus.Factory.CreateUsingRabbitMq(rmq =>
+                {
+                    rmq.Host(new Uri("rabbitmq://rabbitmq"), "/", h =>
+                    {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
+                    rmq.ExchangeType = ExchangeType.Fanout;
+                });
+
+            }).
+             As<IBusControl>()
+            .As<IBus>()
+            .As<IPublishEndpoint>()
+            .SingleInstance();
+
+            builder.Populate(services);
+            ApplicationContainer = builder.Build();
+            return new AutofacServiceProvider(ApplicationContainer);
+
+
+        }
         private void ConfigureAuthService(IServiceCollection services)
         {
             // prevent from mapping "sub" claim to nameidentifier.
@@ -115,13 +145,31 @@ namespace OrderApi
             });
         }
 
-            // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            var pathBase = Configuration["PATH_BASE"];
+            if (!string.IsNullOrEmpty(pathBase))
+            {
+                app.UsePathBase(pathBase);
+            }
+
+
+            app.UseCors("CorsPolicy");
+            app.UseAuthentication();
+
+            app.UseSwagger()
+              .UseSwaggerUI(c =>
+              {
+                  c.SwaggerEndpoint($"{ (!string.IsNullOrEmpty(pathBase) ? pathBase : string.Empty) }/swagger/v1/swagger.json", "OrderApi V1");
+                  //c.ConfigureOAuth2("orderswaggerui", "", "", "Ordering Swagger UI");
+              });
 
             app.UseMvc();
         }
