@@ -83,6 +83,15 @@ namespace OrderApi
                 });
                 options.OperationFilter<AuthorizeCheckOperationFilter>();
             });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    poly => poly.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
         }
 
         private void ConfigureAuthService(IServiceCollection services)
