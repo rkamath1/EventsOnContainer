@@ -10,6 +10,11 @@ services:
     build:
       context: .\EventCatalogAPI
       dockerfile: Dockerfile
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       DatabaseServer: mssqlserver
@@ -30,6 +35,11 @@ services:
     build:
       context: .\WebMVC
       dockerfile: Dockerfile
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
     image: events/webmvc10
     container_name: eventfinder10
     environment:
@@ -55,6 +65,11 @@ services:
     build:
       context: .\TokenServiceApi
       dockerfile: Dockerfile
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
     image: events/tokenapi10
     environment:
       ASPNETCORE_ENVIRONMENT: Development
@@ -72,6 +87,11 @@ services:
     build:
       context: .\CartApi
       dockerfile: Dockerfile
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
     image: events/cartapi10
     environment:
       ASPNETCORE_ENVIRONMENT: Development
@@ -92,6 +112,11 @@ services:
     build:
       context: .\OrderApi
       dockerfile: Dockerfile
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
     image: events/orderapi10
     environment:
       ASPNETCORE_ENVIRONMENT: Development
