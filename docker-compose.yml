@@ -95,7 +95,7 @@ services:
     image: events/orderapi10
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.1.22:6070
+      IdentityUrl: http://192.168.1.22:6170
       SQLSERVER_HOST: mssqlserver
       SA_PASSWORD: EventApi(!)
       DATABASE: OrdersDb
