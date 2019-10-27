@@ -34,7 +34,7 @@ namespace OrderApi.Controllers
         {
             //_settings = settings;
             _config = config;
-            // _ordersContext = ordersContext;
+            //_ordersContext = ordersContext;
             _ordersContext = ordersContext ?? throw new ArgumentNullException(nameof(ordersContext));
 
             ((DbContext)ordersContext).ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;

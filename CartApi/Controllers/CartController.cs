@@ -13,7 +13,6 @@ namespace CartApi.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    [Authorize]
     public class CartController : ControllerBase
     {
         private ICartRepository _repository;
@@ -30,6 +29,7 @@ namespace CartApi.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Cart), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Get(string id)
+        
         {
             var basket = await _repository.GetCartAsync(id);
             return Ok(basket);

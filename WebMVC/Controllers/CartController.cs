@@ -36,7 +36,7 @@ namespace WebMVC.Controllers
             Dictionary<string, int> quantities,
             string action)
         {
-            if (action == " Checkout ")
+            if (action == "Checkout")
             {
                 return RedirectToAction("Create", "Order");
             }

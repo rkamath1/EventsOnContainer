@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
@@ -95,7 +96,7 @@ namespace CartApi
 
 
                     // https://stackoverflow.com/questions/39573721/disable-round-robin-pattern-and-use-fanout-on-masstransit
-                    cfg.ReceiveEndpoint(host, "JewelsOncontainersOct19" + Guid.NewGuid().ToString(), e =>
+                    cfg.ReceiveEndpoint(host, "EventsOncontainersOct26" + Guid.NewGuid().ToString(), e =>
                     {
                         e.LoadFrom(context);
 
@@ -147,9 +148,9 @@ namespace CartApi
             {
                 app.UsePathBase(pathBase);
             }
-            app.UseAuthentication();
-            app.UseCors("CorsPolicy");
             app.UseStaticFiles();
+            app.UseCors("CorsPolicy");
+            app.UseAuthentication();
             app.UseSwagger()
                .UseSwaggerUI(c =>
                {

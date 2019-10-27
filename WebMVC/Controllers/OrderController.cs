@@ -16,6 +16,7 @@ using Order = WebMVC.Models.OrderModels.Order;
 
 namespace WebMVC.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly ICartService _cartSvc;

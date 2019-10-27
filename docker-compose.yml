@@ -6,15 +6,10 @@ networks:
 
 services:
   catalog:
-    image: events/catalogapi
+    image: events/catalogapi10
     build:
       context: .\EventCatalogAPI
       dockerfile: Dockerfile
-    logging:
-      driver:"json-file"
-      options:
-        max-size: "200k"
-        max-file: "10"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       DatabaseServer: mssqlserver
@@ -24,7 +19,7 @@ services:
       ExtrenalEventBaseUrl: http://localhost:6180
     ports:
       - "6180:80"
-    container_name: eventapi2
+    container_name: EventApi10
     networks:
       - backend
       - frontend
@@ -35,13 +30,8 @@ services:
     build:
       context: .\WebMVC
       dockerfile: Dockerfile
-    image: events/webmvc
-    container_name: eventfinder2
-    logging:
-      driver:"json-file"
-      options:
-        max-size: "200k"
-        max-file: "10"
+    image: events/webmvc10
+    container_name: eventfinder10
     environment:
       CatalogUrl: http://catalog
       ASPNETCORE_ENVIRONMENT: Development
@@ -65,18 +55,13 @@ services:
     build:
       context: .\TokenServiceApi
       dockerfile: Dockerfile
-    image: events/tokenapi
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "200k"
-        max-file: "10"
+    image: events/tokenapi10
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       MvcClient: http://localhost:5207
     ports:
       - "6170:80"
-    container_name: tokenserviceapi2
+    container_name: tokenserviceapi10
     networks:
       - backend
       - frontend
@@ -87,19 +72,14 @@ services:
     build:
       context: .\CartApi
       dockerfile: Dockerfile
-    image: events/cartapi
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "200k"
-        max-file: "10"
+    image: events/cartapi10
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       IdentityUrl: http://192.168.1.22:6170
       ConnectionString: basket.data
     ports:
       - "6066:80"
-    container_name: cartapi2
+    container_name: cartapi10
     networks:
       - backend
       - frontend
@@ -112,12 +92,7 @@ services:
     build:
       context: .\OrderApi
       dockerfile: Dockerfile
-    image: events/orderapi
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "200k"
-        max-file: "10"
+    image: events/orderapi10
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       IdentityUrl: http://192.168.1.22:6070
@@ -126,7 +101,7 @@ services:
       DATABASE: OrdersDb
     ports:
       - "6175:80"
-    container_name: orderapi
+    container_name: orderapi10
     networks:
       - backend
       - frontend
@@ -140,7 +115,7 @@ services:
     environment: 
       ACCEPT_EULA: Y
       SA_PASSWORD: EventApi(!)
-    container_name: eventsqlserver
+    container_name: eventsqlserver10
     ports:
       - "1445:1433"
     networks:
@@ -156,7 +131,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: rabbitmq
+    container_name: rabbitmq10
     hostname: myrabbitmq
     ports:
       - "15673:15672"
