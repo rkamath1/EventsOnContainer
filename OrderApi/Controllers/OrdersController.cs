@@ -18,7 +18,6 @@ namespace OrderApi.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    [Authorize]
     public class OrdersController : ControllerBase
     {
         private readonly OrdersContext _ordersContext;
@@ -74,7 +73,7 @@ namespace OrderApi.Controllers
             }
             catch (DbUpdateException ex)
             {
-                _logger.LogError("An error occored during Order saving .." + ex.Message);
+                _logger.LogError("An error occured during Order saving .." + ex.Message);
                 return BadRequest();
             }
 
