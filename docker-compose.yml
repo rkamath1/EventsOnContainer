@@ -45,7 +45,7 @@ services:
     environment:
       CatalogUrl: http://catalog
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.1.22:6170
+      IdentityUrl: http://192.168.3.153:6170
       CallBackUrl: http://localhost:5207
       CartUrl: http://cart
       OrderUrl: http://order
@@ -95,7 +95,7 @@ services:
     image: events/cartapi10
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.1.22:6170
+      IdentityUrl: http://192.168.3.153:6170
       ConnectionString: basket.data
     ports:
       - "6066:80"
@@ -120,7 +120,7 @@ services:
     image: events/orderapi10
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.1.22:6170
+      IdentityUrl: http://192.168.3.153:6170
       SQLSERVER_HOST: mssqlserver
       SA_PASSWORD: EventApi(!)
       DATABASE: OrdersDb

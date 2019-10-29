@@ -66,9 +66,9 @@ namespace OrderApi.Controllers
             _logger.LogInformation(" Saving........");
             try
             {
+                _bus.Publish(new OrderCompletedEvent(order.BuyerId)).Wait();
                 await _ordersContext.SaveChangesAsync();
                 _logger.LogWarning("BuyerId is: " + order.BuyerId);
-                _bus.Publish(new OrderCompletedEvent(order.BuyerId)).Wait();
                 return Ok(new { order.OrderId });
             }
             catch (DbUpdateException ex)
