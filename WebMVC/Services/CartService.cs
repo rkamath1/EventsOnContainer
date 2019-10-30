@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -145,8 +146,6 @@ namespace WebMVC.Services
             return order;
         }
 
-
-
         async Task<string> GetUserTokenAsync()
         {
             var context = _httpContextAccesor.HttpContext;
@@ -154,8 +153,6 @@ namespace WebMVC.Services
             return await context.GetTokenAsync("access_token");
 
         }
-
-
 
     }
 }

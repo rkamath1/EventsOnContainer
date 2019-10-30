@@ -6,7 +6,7 @@ networks:
 
 services:
   catalog:
-    image: events/catalogapi10
+    image: events/catalogapis
     build:
       context: .\EventCatalogAPI
       dockerfile: Dockerfile
@@ -18,13 +18,13 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       DatabaseServer: mssqlserver
-      DatabaseName: EventDb
+      DatabaseName: TheHapsDb
       DatabaseUser: sa
-      DatabasePassword: EventApi(!)
-      ExtrenalEventBaseUrl: http://localhost:6180
+      DatabasePassword: EventApi1(!)
+      ExtrenalEventBaseUrl: http://localhost:6081
     ports:
-      - "6180:80"
-    container_name: EventApi10
+      - "6081:80"
+    container_name: eventapis
     networks:
       - backend
       - frontend
@@ -37,7 +37,7 @@ services:
       dockerfile: Dockerfile
     logging:
       driver: "json-file"
-      options:
+      options: 
         max-size: "200k"
         max-file: "10"
     image: events/webmvc10
@@ -45,14 +45,14 @@ services:
     environment:
       CatalogUrl: http://catalog
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.3.153:6170
-      CallBackUrl: http://localhost:5207
+      IdentityUrl: http://192.168.0.38:6071
+      CallBackUrl: http://localhost:5209
       CartUrl: http://cart
       OrderUrl: http://order
       StripePublicKey: pk_test_FFHyJN9riognYFkDbdHYltci
       StripePrivateKey: sk_test_gqNNPG5zWMYlBZbM5tXldLya
     ports:
-      - "5207:80"
+      - "5209:80"
     networks:
       - frontend
     depends_on:
@@ -70,13 +70,13 @@ services:
       options:
         max-size: "200k"
         max-file: "10"
-    image: events/tokenapi10
+    image: events/tokenapis
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      MvcClient: http://localhost:5207
+      MvcClient: http://localhost:5209
     ports:
-      - "6170:80"
-    container_name: tokenserviceapi10
+      - "6071:80"
+    container_name: tokenserviceapis
     networks:
       - backend
       - frontend
@@ -92,14 +92,14 @@ services:
       options:
         max-size: "200k"
         max-file: "10"
-    image: events/cartapi10
+    image: events/cartapis
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.3.153:6170
+      IdentityUrl: http://192.168.0.38:6071
       ConnectionString: basket.data
     ports:
-      - "6066:80"
-    container_name: cartapi10
+      - "6065:80"
+    container_name: cartapis
     networks:
       - backend
       - frontend
@@ -117,16 +117,16 @@ services:
       options:
         max-size: "200k"
         max-file: "10"
-    image: events/orderapi10
+    image: events/orderapis
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.3.153:6170
+      IdentityUrl: http://192.168.3.153:6071
       SQLSERVER_HOST: mssqlserver
-      SA_PASSWORD: EventApi(!)
+      SA_PASSWORD: EventApi1(!)
       DATABASE: OrdersDb
     ports:
       - "6175:80"
-    container_name: orderapi10
+    container_name: orderapis
     networks:
       - backend
       - frontend
@@ -139,24 +139,23 @@ services:
     image: "microsoft/mssql-server-linux:latest"
     environment: 
       ACCEPT_EULA: Y
-      SA_PASSWORD: EventApi(!)
-    container_name: eventsqlserver10
+      SA_PASSWORD: EventApi1(!)
+    container_name: thehapssqlserver
     ports:
-      - "1445:1433"
+      - "1446:1433"
     networks:
       - backend
 
   basket.data:
     image: redis
     ports:
-      - "6078:6379"  
+      - "6079:6379"  
     networks:
       - backend 
 
-
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: rabbitmq10
+    container_name: rabbitmqs
     hostname: myrabbitmq
     ports:
       - "15673:15672"

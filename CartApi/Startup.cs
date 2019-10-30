@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -77,6 +77,7 @@ namespace CartApi
                 options.OperationFilter<AuthorizeCheckOperationFilter>();
 
             });
+
             var builder = new ContainerBuilder();
 
             // register a specific consumer
@@ -137,6 +138,7 @@ namespace CartApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime lifetime)
         {
             if (env.IsDevelopment())
@@ -148,6 +150,7 @@ namespace CartApi
             {
                 app.UsePathBase(pathBase);
             }
+
             app.UseStaticFiles();
             app.UseCors("CorsPolicy");
             app.UseAuthentication();
