@@ -1,4 +1,4 @@
-﻿@model  WebMVC.Models.CartModels.Cart
+@model  WebMVC.Models.CartModels.Cart
 
 @{
     ViewData["Title"] = "My Cart";
@@ -23,9 +23,10 @@
                 </div>
             }
 
-            <section class="esh-basket-title col-xs-3">Product</section>
+
+            <section class="esh-basket-title col-xs-3">Event</section>
             <section class="esh-basket-title col-xs-3 hidden-lg-down"></section>
-            <section class="esh-basket-title col-xs-2">Price</section>
+            <section class="esh-basket-title col-xs-2">Unit Price</section>
             <section class="esh-basket-title col-xs-2">Quantity</section>
             <section class="esh-basket-title col-xs-2">Cost</section>
         </article>
@@ -75,12 +76,15 @@
             <article class="esh-basket-items row">
                 <section class="esh-basket-item col-xs-7"></section>
                 <section class="esh-basket-item col-xs-2">
-                    <button class="btn esh-basket-checkout" name="name" value="" type="submit">[ Update ]</button>
+
+                    <button class="btn esh-basket-checkout" name="name" value="" type="submit">Update Cart</button>
+
                 </section>
                 <section class="esh-basket-item col-xs-3">
                     <input type="submit"
                            class="btn esh-basket-checkout"
-                           value="[ Checkout ]" name="action" />
+                           value="Checkout" name="action" />
+
                 </section>
             </article>
         </div>

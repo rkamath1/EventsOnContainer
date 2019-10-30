@@ -1,0 +1,11 @@
+@model int
+
+@{
+    ViewBag.Title = "Order Complete";
+}
+<h2>Order Complete</h2>
+<p>Thanks for purchasing your event tickets with TheHaps! Your order number is: @Model</p>
+<p>
+    How about browsing some more events in our 
+    <a asp-controller="EventCatalog" asp-action="Index">Catalog?</a>
+</p>
