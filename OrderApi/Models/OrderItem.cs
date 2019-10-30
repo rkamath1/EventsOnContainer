@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventsOnContainer.Services.OrderApi.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -58,5 +59,5 @@ namespace OrderApi.Models
         }
 
     }
-}
+
 }

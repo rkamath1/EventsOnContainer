@@ -2,15 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
-using OrderApi.Infrastructure.ActionResults;
-using OrderApi.Infrastructure.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using EventsOnContainer.Services.OrderApi.Exceptions;
+using EventsOnContainer.Services.OrderApi.Infrastructure.ActionResults;
 using System.Net;
-using System.Threading.Tasks;
 
-namespace OrderApi.Infrastructure.Filters
+namespace EventsOnContainer.Services.OrderApi.Infrastructure.Filters
 {
     public class HttpGlobalExceptionFilter : IExceptionFilter
     {

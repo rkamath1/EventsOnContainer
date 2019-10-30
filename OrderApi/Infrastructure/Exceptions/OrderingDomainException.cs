@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace OrderApi.Infrastructure.Exceptions
+namespace EventsOnContainer.Services.OrderApi.Exceptions
 {
     /// <summary>
     /// Exception type for domain exceptions

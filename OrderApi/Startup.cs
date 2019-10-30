@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using OrderApi.Infrastructure.Filters;
+using EventsOnContainer.Services.OrderApi.Infrastructure.Filters;
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -43,7 +42,7 @@ namespace OrderApi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             ConfigureAuthService(services);
             var hostname = Environment.GetEnvironmentVariable("SQLSERVER_HOST") ?? "mssqlserver";
-            var password = Environment.GetEnvironmentVariable("SA_PASSWORD") ?? "ProductApi(!)";
+            var password = Environment.GetEnvironmentVariable("SA_PASSWORD") ?? "EventApi(!)";
             var database = Environment.GetEnvironmentVariable("DATABASE") ?? "OrdersDb";
 
             var connectionString = $"Server={hostname};Database={database};User ID=sa;Password={password};";

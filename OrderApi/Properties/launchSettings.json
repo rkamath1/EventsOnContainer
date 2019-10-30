@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:49340",
+      "applicationUrl": "http://localhost:63143",
       "sslPort": 0
     }
   },
@@ -31,7 +31,7 @@
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/values",
       "environmentVariables": {},
-      "httpPort": 49342
+      "httpPort": 63144
     }
   }
 }

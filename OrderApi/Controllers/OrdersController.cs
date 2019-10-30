@@ -18,7 +18,6 @@ namespace OrderApi.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    [Authorize]
     public class OrdersController : ControllerBase
     {
         private readonly OrdersContext _ordersContext;
@@ -34,7 +33,7 @@ namespace OrderApi.Controllers
         {
             //_settings = settings;
             _config = config;
-            // _ordersContext = ordersContext;
+            //_ordersContext = ordersContext;
             _ordersContext = ordersContext ?? throw new ArgumentNullException(nameof(ordersContext));
 
             ((DbContext)ordersContext).ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
@@ -67,14 +66,14 @@ namespace OrderApi.Controllers
             _logger.LogInformation(" Saving........");
             try
             {
+                _bus.Publish(new OrderCompletedEvent(order.BuyerId)).Wait();
                 await _ordersContext.SaveChangesAsync();
                 _logger.LogWarning("BuyerId is: " + order.BuyerId);
-                _bus.Publish(new OrderCompletedEvent(order.BuyerId)).Wait();
                 return Ok(new { order.OrderId });
             }
             catch (DbUpdateException ex)
             {
-                _logger.LogError("An error occored during Order saving .." + ex.Message);
+                _logger.LogError("An error occured during Order saving .." + ex.Message);
                 return BadRequest();
             }
 

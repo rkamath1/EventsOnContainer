@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,10 +27,10 @@ namespace WebMVC.Infrastructure
             {
                 var filterQs = string.Empty;
 
-                if (type.HasValue || category.HasValue || location.HasValue)
+                if (category.HasValue || type.HasValue || location.HasValue)
                 {
+                    var categoryQs = (category.HasValue) ? category.Value.ToString() : "null";
                     var typeQs = (type.HasValue) ? type.Value.ToString() : "null";
-                    var categoryQs = (category.HasValue) ? category.Value.ToString() : "null";                    
                     var locationQs = (location.HasValue) ? location.Value.ToString() : "null"; 
                     filterQs = $"/type/{typeQs}/category/{categoryQs}/location/{locationQs}";
                 }
@@ -55,6 +55,24 @@ namespace WebMVC.Infrastructure
             public static string CleanBasket(string baseUri, string basketId)
             {
                 return $"{baseUri}/{basketId}";
+            }
+        }
+
+        public static class Order
+        {
+            public static string GetOrder(string baseUri, string orderId)
+            {
+                return $"{baseUri}/{orderId}";
+            }
+
+            public static string GetOrders(string baseUri)
+            {
+                return baseUri;
+            }
+
+            public static string AddNewOrder(string baseUri)
+            {
+                return $"{baseUri}/new";
             }
         }
     }

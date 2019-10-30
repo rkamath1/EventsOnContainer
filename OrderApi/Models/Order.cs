@@ -31,8 +31,6 @@ namespace OrderApi.Models
         {
             OrderItems = new List<OrderItem>();
         }
-
-
     }
     public enum OrderStatus
     {
