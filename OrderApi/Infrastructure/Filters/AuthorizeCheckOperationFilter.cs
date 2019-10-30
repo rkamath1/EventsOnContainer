@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.JsonPatch.Operations;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
@@ -6,12 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CartApi.Infrastructure.Filters
+namespace OrderApi.Infrastructure.Filters
 {
     public class AuthorizeCheckOperationFilter : IOperationFilter
     {
-        [Obsolete]
-        public void Apply(Operation operation, OperationFilterContext context)
+        public void Apply(Swashbuckle.AspNetCore.Swagger.Operation operation, OperationFilterContext context)
         {
             // Check for authorize attribute
             var hasAuthorize = context.ApiDescription.ControllerAttributes().OfType<AuthorizeAttribute>().Any() ||
@@ -25,7 +25,7 @@ namespace CartApi.Infrastructure.Filters
                 operation.Security = new List<IDictionary<string, IEnumerable<string>>>();
                 operation.Security.Add(new Dictionary<string, IEnumerable<string>>
                 {
-                    { "oauth2", new [] { "basket" } }
+                    { "oauth2", new [] { "order" } }
                 });
             }
         }
