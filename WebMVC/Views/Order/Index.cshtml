@@ -7,7 +7,7 @@
         ViewData["Title"] = "My Orders";
     }
     <div class="esh-orders">
-        @Html.Partial("_Header", new List<Header>() {
+        @await Html.PartialAsync("_Header", new List<Header>() {
         new Header() { Controller = "EventCatalog", Text = "Back to catalog" },
         new Header() { Text = " / " }
          })
@@ -24,7 +24,7 @@
                 <article class="esh-orders-items row">
                     <section class="esh-orders-item col-xs-2">@Html.DisplayFor(modelItem => item.OrderId)</section>
                     <section class="esh-orders-item col-xs-4">@Html.DisplayFor(modelItem => item.OrderDate)</section>
-                    <section class="esh-orders-item col-xs-2">$ @Html.DisplayFor(modelItem => item.OrderTotal)</section>
+                    <section class="esh-orders-item col-xs-2">$@Html.DisplayFor(modelItem => item.OrderTotal)</section>
                     <section class="esh-orders-item col-xs-2">@Html.DisplayFor(modelItem => item.OrderStatus)</section>
                     <section class="esh-orders-item col-xs-2">
                         <a class="esh-orders-link" asp-controller="Order" asp-action="Detail" asp-route-orderId="@item.OrderId">Detail</a>

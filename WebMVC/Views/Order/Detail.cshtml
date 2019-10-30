@@ -6,7 +6,7 @@
     ViewData["Title"] = "Order Detail";
 }
 <div class="esh-orders_detail">
-    @Html.Partial("_Header", new List<Header>() { new Header() { Controller = "EventCatalog", Text = "Back to catalog" } })
+    @await Html.PartialAsync("_Header", new List<Header>() { new Header() { Controller = "EventCatalog", Text = "Back to catalog" } })
     <div class="container">
         <section class="esh-orders_detail-section">
             <article class="esh-orders_detail-titles row">
@@ -18,7 +18,7 @@
             <article class="esh-orders_detail-items row">
                 <section class="esh-orders_detail-item col-xs-3">@Model.OrderId</section>
                 <section class="esh-orders_detail-item col-xs-3">@Model.OrderDate</section>
-                <section class="esh-orders_detail-item col-xs-3">$ @Math.Round(Model.OrderTotal,2)</section>
+                <section class="esh-orders_detail-item col-xs-3">$@Math.Round(Model.OrderTotal,2)</section>
                 <section class="esh-orders_detail-item col-xs-3">@Model.OrderStatus</section>
             </article>
         </section>
@@ -48,9 +48,9 @@
                         <img class="esh-orders_detail-image" src="@item.PictureUrl">
                     </section>
                     <section class="esh-orders_detail-item esh-orders_detail-item--middle col-xs-4">@item.ProductName</section>
-                    <section class="esh-orders_detail-item esh-orders_detail-item--middle col-xs-1">$ @Math.Round(item.UnitPrice, 2)</section>
+                    <section class="esh-orders_detail-item esh-orders_detail-item--middle col-xs-1">$@Math.Round(item.UnitPrice, 2)</section>
                     <section class="esh-orders_detail-item esh-orders_detail-item--middle col-xs-1">@item.Units</section>
-                    <section class="esh-orders_detail-item esh-orders_detail-item--middle col-xs-2">$ @Math.Round(item.Units * item.UnitPrice, 2)</section>
+                    <section class="esh-orders_detail-item esh-orders_detail-item--middle col-xs-2">$@Math.Round(item.Units * item.UnitPrice, 2)</section>
                 </article>
             }
         </section>
@@ -61,7 +61,7 @@
             </article>
             <article class="esh-orders_detail-items row">
                 <section class="esh-orders_detail-item col-xs-9"></section>
-                <section class="esh-orders_detail-item esh-orders_detail-item--mark col-xs-2">$ @Math.Round(Model.OrderTotal,2)</section>
+                <section class="esh-orders_detail-item esh-orders_detail-item--mark col-xs-2">$@Math.Round(Model.OrderTotal,2)</section>
             </article>
         </section>
     </div>

@@ -3,7 +3,12 @@
 
 <section class="esh-orders_new-section">
     <article class="esh-orders_new-titles row">
-        <section class="esh-orders_new-title col-xs-12">Order details</section>
+        <section class="esh-orders_new-title col-xs-4">ORDER DETAILS:</section>
+        @*<section class="esh-orders-new-title col-xs-3 hidden-lg-down"></section>*@
+        <section class="esh-orders_new-title col-xs-3">EVENT NAME</section>
+        <section class="esh-orders_new-title col-xs-1">PRICE</section>
+        <section class="esh-orders_new-title col-xs-1">QTY</section>
+        <section class="esh-orders_new-title col-xs-1">COST</section>
     </article>
 
     @for (int i = 0; i < Model.OrderItems.Count; i++)
@@ -15,19 +20,19 @@
                 <img class="esh-basket-image" src="@item.PictureUrl">
                 <input type="hidden" value="@item.PictureUrl" name=@("orderitems[" + i + "].PictureUrl") />
             </section>
-            <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-4">
+            <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-3">
                 @item.ProductName
                 <input type="hidden" value="@item.ProductName" name=@("orderitems[" + i + "].ProductName") />
             </section>
             <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-1">
-                $ @item.UnitPrice
+                $@item.UnitPrice
                 <input type="hidden" value="@item.UnitPrice" name=@("orderitems[" + i + "].UnitPrice") />
             </section>
             <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-1">
                 @item.Units
                 <input type="hidden" value="@item.Units" name=@("orderitems[" + i + "].Units") />
             </section>
-            <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-2">$ @Math.Round(item.Units * item.UnitPrice, 2)</section>
+            <section class="esh-orders_new-item esh-orders_new-item--middle col-xs-2">$@Math.Round(item.Units * item.UnitPrice, 2)</section>
         </article>
     }
 </section>
@@ -35,13 +40,13 @@
 <section class="esh-orders_new-section esh-orders_new-section--right">
     <article class="esh-orders_new-titles row">
         <section class="esh-orders_new-title col-xs-9"></section>
-        <section class="esh-orders_new-title col-xs-2">Total</section>
+        <section class="esh-orders_new-title col-xs-2">TOTAL</section>
     </article>
 
     <article class="esh-orders_new-items row">
         <section class="esh-orders_new-item col-xs-9"></section>
         <section class="esh-orders_new-item esh-orders_new-item--mark col-xs-2">
-            $ @Model.OrderTotal
+            $@Model.OrderTotal
             <input type="hidden" value="@Model.OrderTotal" name="Total"/>
         </section>
     </article>
