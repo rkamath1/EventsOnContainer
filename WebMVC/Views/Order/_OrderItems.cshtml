@@ -3,19 +3,25 @@
 
 <section class="esh-orders_new-section">
     <article class="esh-orders_new-titles row">
-        <section class="esh-orders_new-title col-xs-4">ORDER DETAILS:</section>
-        @*<section class="esh-orders-new-title col-xs-3 hidden-lg-down"></section>*@
-        <section class="esh-orders_new-title col-xs-3">EVENT NAME</section>
-        <section class="esh-orders_new-title col-xs-1">PRICE</section>
-        <section class="esh-orders_new-title col-xs-1">QTY</section>
-        <section class="esh-orders_new-title col-xs-1">COST</section>
+        <div>
+            <section class="esh-orders_new-title col-xs-4">ORDER DETAILS:</section>
+            @*<section class="esh-orders-new-title col-xs-3 hidden-lg-down"></section>*@
+            <section class="esh-orders_new-title col-xs-3">EVENT NAME</section>
+            <section class="esh-orders_new-title col-xs-1">PRICE</section>
+            <section class="esh-orders_new-title col-xs-1">QTY</section>
+            <section class="esh-orders_new-title col-xs-1">COST</section>
+        </div>
+        <div class="row">
+
+        </div>
     </article>
 
     @for (int i = 0; i < Model.OrderItems.Count; i++)
     {
         var item = Model.OrderItems[i];
 
-        <article class="esh-orders_new-items esh-orders_new-items--border row">
+        <article class="esh-orders_new-items row">
+          <div>
             <section class="esh-orders_new-item col-md-4 hidden-md-down">
                 <img class="esh-basket-image" src="@item.PictureUrl">
                 <input type="hidden" value="@item.PictureUrl" name=@("orderitems[" + i + "].PictureUrl") />
@@ -33,6 +39,10 @@
                 <input type="hidden" value="@item.Units" name=@("orderitems[" + i + "].Units") />
             </section>
             <section class="esh-orders_new-item esh-orders_new-item col-xs-2">$@Math.Round(item.Units * item.UnitPrice, 2)</section>
+          </div>
+          <div class="row">
+
+          </div>
         </article>
     }
 </section>

@@ -1,6 +1,4 @@
-
 @using WebMVC.Models.OrderModels
-
 @using WebMVC.ViewModels
 @model IEnumerable<Order>
     @{
@@ -9,12 +7,12 @@
     <div class="esh-orders">
         @await Html.PartialAsync("_Header", new List<Header>() {
         new Header() { Controller = "EventCatalog", Text = "Back to catalog" },
-        new Header() { Text = " / " }
+        //new Header() { Controller = "Order", Text = "Details"}
          })
         <div class="container">
             <article class="esh-orders-titles row">
                 <section class="esh-orders-title col-xs-2">Order number</section>
-                <section class="esh-orders-title col-xs-4">Date</section>
+                <section class="esh-orders-title col-xs-2">Order Date</section>
                 <section class="esh-orders-title col-xs-2">Total</section>
                 <section class="esh-orders-title col-xs-2">Status</section>
                 <section class="esh-orders-title col-xs-2"></section>
@@ -23,11 +21,11 @@
             {
                 <article class="esh-orders-items row">
                     <section class="esh-orders-item col-xs-2">@Html.DisplayFor(modelItem => item.OrderId)</section>
-                    <section class="esh-orders-item col-xs-4">@Html.DisplayFor(modelItem => item.OrderDate)</section>
+                    <section class="esh-orders-item col-xs-2">@Html.DisplayFor(modelItem => item.OrderDate)</section>
                     <section class="esh-orders-item col-xs-2">$@Html.DisplayFor(modelItem => item.OrderTotal)</section>
                     <section class="esh-orders-item col-xs-2">@Html.DisplayFor(modelItem => item.OrderStatus)</section>
                     <section class="esh-orders-item col-xs-2">
-                        <a class="esh-orders-link" asp-controller="Order" asp-action="Detail" asp-route-orderId="@item.OrderId">Detail</a>
+                        <a class="esh-orders-link" asp-controller="Order" asp-action="Detail" asp-route-orderId="@item.OrderId.ToString()">Detail</a>
                     </section>
                 </article>
             }

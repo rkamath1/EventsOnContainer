@@ -15,8 +15,24 @@ namespace WebMVC.Controllers
             return View();
         }
 
+        public IActionResult About()
+        {
+            ViewData["Message"] = "Book Your Event Tickets The Easy Way!";
+
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            ViewData["Message"] = "You Can Reach Us At:";
+
+            return View();
+        }
+
         public IActionResult Privacy()
         {
+            ViewData["Message"] = "Privacy Policy";
+
             return View();
         }
 

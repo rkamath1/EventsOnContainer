@@ -27,14 +27,21 @@ namespace TokenServiceApi.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Book Your Event Tickets The Easy Way!";
 
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "You Can Reach Us At:";
+
+            return View();
+        }
+
+        public IActionResult Privacy()
+        {
+            ViewData["Message"] = "Privacy Policy";
 
             return View();
         }
