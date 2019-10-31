@@ -23,7 +23,7 @@ namespace WebMVC.Controllers
 
         public async Task<IActionResult> Index(int? TypeFilterApplied, int? CategoryFilterApplied, int? LocationFilterApplied, int? page)
         {
-            var itemsOnPage = 10;
+            var itemsOnPage = 15;
             var catalog = await _service.GetEventCatalogItemsAsync (page ?? 0, itemsOnPage, TypeFilterApplied, CategoryFilterApplied, LocationFilterApplied);
             var vm = new EventCatalogIndexViewModel
             {

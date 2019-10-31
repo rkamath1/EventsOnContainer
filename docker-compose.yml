@@ -123,8 +123,8 @@ services:
       CallBackUrl: http://localhost:5209
       CartUrl: http://cart
       OrderUrl: http://order
-      StripePublicKey: pk_test_FFHyJN9riognYFkDbdHYltci
-      StripePrivateKey: sk_test_gqNNPG5zWMYlBZbM5tXldLya
+      StripePublicKey: pk_test_Q1AuE2Y3Jtd2Cz0WUY5HNTXx00tfzJr8ST
+      StripePrivateKey: sk_test_HnTAMnT67Z9e9ZBkQYhcCRKp00Tms3VXlU
     ports:
       - "5209:80"
     networks:
