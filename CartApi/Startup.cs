@@ -163,6 +163,7 @@ namespace CartApi
 
             app.UseMvc();
             var bus = ApplicationContainer.Resolve<IBusControl>();
+            
             var busHandle = TaskUtil.Await(() => bus.StartAsync());
             lifetime.ApplicationStopping.Register(() => busHandle.Stop());
         }

@@ -28,6 +28,7 @@ namespace WebMVC.Infrastructure
         }
 
         public async Task<string> GetStringAsync(string uri, string authorizationToken = null, string authorizationMethod = "Bearer")
+        
         {
             var requestMessage = new HttpRequestMessage(
                 HttpMethod.Get, uri);

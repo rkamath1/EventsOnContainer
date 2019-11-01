@@ -1,5 +1,6 @@
 @using WebMVC.ViewModels
 @model WebMVC.Models.OrderModels.Order
+@*@model IEnumerable<OrderItem>*@
 @{
     ViewData["Title"] = "Order Detail";
 }
@@ -16,7 +17,7 @@
             <article class="esh-orders_detail-items row">
                 <section class="esh-orders_detail-item col-xs-3">@Model.OrderId</section>
                 <section class="esh-orders_detail-item col-xs-3">@Model.OrderDate</section>
-                <section class="esh-orders_detail-item col-xs-3">$@Math.Round(Model.OrderTotal,2)</section>
+                <section class="esh-orders_detail-item col-xs-3">$@Math.Round(Model.OrderTotal, 2)</section>
                 <section class="esh-orders_detail-item col-xs-3">@Model.OrderStatus</section>
             </article>
         </section>
@@ -28,11 +29,11 @@
                 <section class="esh-orders_detail-item col-xs-12">@Model.Address</section>
             </article>
             @*<article class="esh-orders_detail-items row">
-                <section class="esh-orders_detail-item col-xs-12">@Model.City</section>
-            </article>
-            <article class="esh-orders_detail-items row">
-                <section class="esh-orders_detail-item col-xs-12">@Model.Country</section>
-            </article>*@
+                    <section class="esh-orders_detail-item col-xs-12">@Model.City</section>
+                </article>
+                <article class="esh-orders_detail-items row">
+                    <section class="esh-orders_detail-item col-xs-12">@Model.Country</section>
+                </article>*@
         </section>
         <section class="esh-orders_detail-section">
             <article class="esh-orders_detail-titles row">
@@ -59,7 +60,7 @@
             </article>
             <article class="esh-orders_detail-items row">
                 <section class="esh-orders_detail-item col-xs-9"></section>
-                <section class="esh-orders_detail-item esh-orders_detail-item--mark col-xs-2">$@Math.Round(Model.OrderTotal,2)</section>
+                <section class="esh-orders_detail-item esh-orders_detail-item--mark col-xs-2">$@Math.Round(Model.OrderTotal, 2)</section>
             </article>
         </section>
     </div>

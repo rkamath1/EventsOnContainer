@@ -136,14 +136,22 @@ namespace WebMVC.Controllers
 
         }
 
-
         public async Task<IActionResult> Detail(string orderId)
         {
             var user = _identitySvc.Get(HttpContext.User);
 
             var order = await _orderSvc.GetOrder(orderId);
+
             return View(order);
         }
+
+        //public async Task<IActionResult> Detail()
+        //{
+        //    //var user = _identitySvc.Get(HttpContext.User);
+
+        //    var order = await _orderSvc.GetOrders();
+        //    return View(order);
+        //}
 
         public async Task<IActionResult> Index()
         {

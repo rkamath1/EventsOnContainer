@@ -1,4 +1,6 @@
-﻿@{
+﻿@using WebMVC.ViewModels
+
+@{
     ViewData["Title"] = "About";
 }
 
@@ -46,6 +48,7 @@
     </a>
 </div>
 
+@await Html.PartialAsync("_Header", new List<Header>() { new Header() { Controller = "EventCatalog", Text = "Back to catalog" } })
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 

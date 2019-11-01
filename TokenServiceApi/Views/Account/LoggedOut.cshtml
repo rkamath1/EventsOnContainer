@@ -49,28 +49,24 @@
     </a>
 </div>
 
+@await Html.PartialAsync("_Header")
 <div class="page-header logged-out">
     <h1>
         Logout
-        <p><small>You are now logged out</small></p>
+        <p><small>You have successfully logged out</small></p>
     </h1>
 
     @if (Model.PostLogoutRedirectUri != null)
     {
-        <div>   
-            Click <a class="PostLogoutRedirectUri" href="@Model.PostLogoutRedirectUri">here</a> to return to the
-            <span>@Model.ClientName</span> event catalog.
+        <div>
+            Click <a class="PostLogoutRedirectUri" href="@Model.PostLogoutRedirectUri">HERE</a> to return to the
+            Event Catalog.
         </div>
     }
 
-    @if (Model.SignOutIframeUrl == null)
+    @if (Model.SignOutIframeUrl != null)
     {
-        @*<iframe width="0" height="0" class="signout" src="@Model.SignOutIframeUrl"></iframe>*@
-        <div>
-            Click <a href="http://localhost:5209/">here</a> to return to the
-            event catalog.
-        </div>
-
+        <iframe width="0" height="0" class="signout" src="@Model.SignOutIframeUrl"></iframe>
     }
 </div>
 
